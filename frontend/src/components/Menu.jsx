@@ -1,13 +1,33 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import Link from "next/link";
 
+const Menu = ({ closeMenu }) => {
+    const menuRef = useRef(null);
 
-const Menu = () => {
+    useEffect(() => {
+        function handleClickOutside(event) {
+            if (menuRef.current && !menuRef.current.contains(event.target)) {
+                closeMenu();
+            }
+        }
 
+        function handleTouchOutside(event) {
+            if (menuRef.current && !menuRef.current.contains(event.target)) {
+                closeMenu();
+            }
+        }
+
+        document.addEventListener("mousedown", handleClickOutside);
+        document.addEventListener("touchstart", handleTouchOutside);
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+            document.removeEventListener("touchstart", handleTouchOutside);
+        };
+    }, [closeMenu]);
 
     return (
-        <section className='absolute top-[7vh] w-full h-fit menu-bar-style shadow shadow-red-300'>
-
+        <section ref={menuRef} className='absolute top-[7vh] w-full h-fit menu-bar-style shadow shadow-red-300'>
             <div className='w-full flex flex-col justify-start items-center gap-3 mt-3'>
                 <Link href="/" className='text-center text-white text-xl font-bold'>Home</Link>
                 <Link href="/" className='text-center text-white text-xl font-bold'>About Us</Link>
@@ -28,9 +48,8 @@ const Menu = () => {
                     <img src='/whatsapp.png' alt='ghanchi sandesh facebook link' className='rounded w-12' />
                 </li>
             </ul>
-
         </section>
     )
 }
 
-export default Menu
+export default Menu;

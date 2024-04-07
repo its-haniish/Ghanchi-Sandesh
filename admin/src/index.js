@@ -6,6 +6,7 @@ import { Provider } from "react-redux";
 import store from './redux/store';
 import Login from './screens/Login.jsx'
 import App from "./screens/App.jsx"
+import AddPost from './screens/AddPost.jsx';
 
 
 const router = createBrowserRouter([
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />
+  },
+  {
+    path: "/add-post",
+    element: <AddPost />
   }
 ])
 

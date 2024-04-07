@@ -1,6 +1,5 @@
 "use client"
 import React, { useState } from 'react';
-import { FaRegPlayCircle } from "react-icons/fa";
 import { FiMenu } from "react-icons/fi";
 import Link from "next/link";
 import Menu from './Menu.jsx';
@@ -14,6 +13,10 @@ const Navbar = () => {
         setShowMenu(prev => !prev)
     }
 
+    const closeMenu = () => {
+        setShowMenu(false)
+    }
+
     return (
         <>
             <nav className='w-screen h-[7vh] bg-[#e51a4b] px-2 py-0'>
@@ -24,21 +27,11 @@ const Navbar = () => {
                         <img src="/Ghanchi Sandesh.jpg" alt="Ghanchi Sandesh" className='w-[130px] bg-none border-none' />
                     </Link>
 
-                    <div className='flex justify-end items-center gap-2 w-[60%]'>
+                    <div className='flex justify-end items-center w-[40%]'>
 
                         <Link className='px-1 bg-white text-[#e51a4b] text-sm
                     font-bold rounded w-fit h-5 text-nowrap' href="/e-sandesh" >
                             इ-संदेश
-                        </Link>
-
-                        <Link className='px-2 py-[1px] bg-white flex justify-center items-center gap-1 rounded w-fit h-5 flex-nowrap' href="/" >
-
-                            <span className=' text-[#e51a4b] text-sm font-bold text-nowrap'>
-                                विडियो-न्यूज़
-                            </span>
-
-                            <FaRegPlayCircle color='#dc214c' />
-
                         </Link>
                     </div>
 
@@ -54,7 +47,7 @@ const Navbar = () => {
 
 
             </nav >
-            {showMenu && <Menu />}
+            {showMenu && <Menu closeMenu={closeMenu} />}
         </>
     )
 }

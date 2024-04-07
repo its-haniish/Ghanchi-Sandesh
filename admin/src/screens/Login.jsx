@@ -10,7 +10,7 @@ const Login = () => {
 
     return (
         <form onSubmit={(e) => e.preventDefault()} className='w-screen h-screen flex flex-col justify-start items-center'>
-            <h1 className='mt-16 text-5xl font-["Rubik_Scribble"] font-normal not-italic text-center text-red-500 ' style={{ textShadow: "0px 0px 5px black" }}  >Batchmate</h1>
+            <h1 className='mt-16 text-5xl font-["Tilt Neon"] font-normal not-italic text-center  ' style={{ textShadow: "0px 0px 5px black" }}  >ADMIN</h1>
             {/* input email */}
             <input
                 type="email"
@@ -33,11 +33,6 @@ const Login = () => {
                         }
                     </button>
                 </div>
-            </div>
-
-            <div className='mt-1 flex w-[70vw] justify-between items-start text-blue-600 active:text-blue-950'>
-                <NavLink to="/signup" className="text-[0.8rem]">New student?</NavLink>
-                <NavLink to="/forget-password" className="text-[0.8rem]">Forgot Password?</NavLink>
             </div>
 
             <button className='mt-5 bg-black text-white text-lg py-1 px-4 rounded active:bg-slate-600 w-28 h-10 flex justify-center items-center' onClick={() => setLoading(!loading)}>

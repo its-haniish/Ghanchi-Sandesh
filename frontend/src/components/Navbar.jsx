@@ -9,7 +9,7 @@ import { IoClose } from "react-icons/io5";
 const Navbar = () => {
     const [showMenu, setShowMenu] = useState(false);
 
-    const toggleMenu = () => {
+    const openMenu = () => {
         setShowMenu(prev => !prev)
     }
 
@@ -19,7 +19,7 @@ const Navbar = () => {
 
     return (
         <>
-            <nav className='w-screen h-[7vh] bg-[#e51a4b] px-2 py-0'>
+            <nav className='w-screen h-[7vh] bg-[#e51a4b] px-2 py-0 relative overflow-visible'>
 
                 <div className='w-full h-full flex justify-between items-center'>
 
@@ -35,19 +35,18 @@ const Navbar = () => {
                         </Link>
                     </div>
 
-                    <button className='flex justify-center items-center w-fit h-full ml-2' onClick={toggleMenu}>
+                    <button className='flex justify-center items-center w-fit h-full ml-2'>
                         {
                             !showMenu ?
-                                <FiMenu color='white' size={42} />
-                                : <IoClose color='white' size={42} />
+                                <FiMenu color='white' size={42} onClick={openMenu} />
+                                : <IoClose color='white' size={42} onClick={closeMenu} />
                         }
                     </button>
 
                 </div >
 
-
+                {showMenu && <Menu closeMenu={closeMenu} />}
             </nav >
-            {showMenu && <Menu closeMenu={closeMenu} />}
         </>
     )
 }

@@ -1,20 +1,18 @@
-"use client"
 import React, { useState } from 'react';
 import { FiMenu } from "react-icons/fi";
 import Link from "next/link";
-import Menu from './Menu.jsx';
 import { IoClose } from "react-icons/io5";
-
+import Menu from './Menu';
 
 const Navbar = () => {
     const [showMenu, setShowMenu] = useState(false);
 
     const openMenu = () => {
-        setShowMenu(prev => !prev)
+        setShowMenu(true);
     }
 
     const closeMenu = () => {
-        setShowMenu(false)
+        setShowMenu(false);
     }
 
     return (
@@ -29,26 +27,22 @@ const Navbar = () => {
 
                     <div className='flex justify-end items-center w-[40%]'>
 
-                        <Link className='px-1 bg-white text-[#e51a4b] text-sm
-                    font-bold rounded w-fit h-5 text-nowrap' href="/e-sandesh" >
+                        <Link className='px-1 bg-white text-[#e51a4b] text-sm font-bold rounded w-fit h-5 text-nowrap' href="/e-sandesh">
                             इ-संदेश
                         </Link>
                     </div>
 
-                    <button className='flex justify-center items-center w-fit h-full ml-2'>
-                        {
-                            !showMenu ?
-                                <FiMenu color='white' size={42} onClick={openMenu} />
-                                : <IoClose color='white' size={42} onClick={closeMenu} />
-                        }
+                    <button className='flex justify-center items-center w-fit h-full ml-2' onClick={showMenu ? closeMenu : openMenu}>
+                        {showMenu ? <IoClose color='white' size={42} /> : <FiMenu color='white' size={42} />}
                     </button>
 
-                </div >
+                </div>
 
-                {showMenu && <Menu closeMenu={closeMenu} />}
-            </nav >
+            </nav>
+
+            {showMenu && <Menu closeMenu={closeMenu} />}
         </>
     )
 }
 
-export default Navbar
+export default Navbar;

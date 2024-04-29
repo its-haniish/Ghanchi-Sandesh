@@ -18,7 +18,7 @@ const Menu = ({ closeMenu }) => {
     }, [menuRef, closeMenu]);
 
     return (
-        <section ref={menuRef} className='absolute bottom-[-27.5vh] left-0 w-full h-fit menu-bar-style shadow shadow-red-300'>
+        <section ref={menuRef} className='w-full h-fit menu-bar-style shadow shadow-red-300'>
             <div className='w-full flex flex-col justify-start items-center gap-3 mt-3'>
                 <Link href="/" onClick={closeMenu} className='text-center text-white text-xl font-bold'>Home</Link>
                 <Link href="/" onClick={closeMenu} className='text-center text-white text-xl font-bold'>About Us</Link>

@@ -1,8 +1,32 @@
-import React from 'react'
+"use client"
+import React, { useEffect, useState } from 'react'
 import Navbar from '@/components/Navbar'
 import NewsPreview from '@/components/NewsPreview'
 
+
 const Home = () => {
+  const [blogs, setBlogs] = useState([])
+  // const [page, setPage] = useState(1)
+
+
+  const getAllPosts = async () => {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/get-all-posts`, {
+      method: 'POST',
+      headers: { "Content-Type": "application/json" }
+    });
+
+    const result = await response.json();
+
+    if (result?.msg === "Unable to fetch data.") {
+      return alert(result.msg)
+    }
+    setBlogs(result.response)
+  }
+
+  useEffect(() => {
+    getAllPosts()
+  }, [])
+
   return (
     <>
       <Navbar />
@@ -17,25 +41,14 @@ const Home = () => {
 
         {/* top new wrapper */}
         <div className='flex flex-col w-full mt-2 justify-start items-center gap-3 overflow-y-visible mb-5'>
-          <NewsPreview />
-          <NewsPreview />
-          <NewsPreview />
-          <NewsPreview />
-          <NewsPreview />
-          <NewsPreview />
-          <NewsPreview />
-          <NewsPreview />
-          <NewsPreview />
-          <NewsPreview />
-          <NewsPreview />
-          <NewsPreview />
-          <NewsPreview />
-          <NewsPreview />
-          <NewsPreview />
-          <NewsPreview />
-          <NewsPreview />
-          <NewsPreview />
-          <NewsPreview />
+          {
+            blogs?.map(post => {
+              const { _id } = post;
+              return (
+                <NewsPreview key={_id} post={post} />
+              )
+            })
+          }
         </div>
       </main>
     </>

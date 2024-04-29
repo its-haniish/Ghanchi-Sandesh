@@ -1,8 +1,11 @@
+"use client"
 import Navbar from '@/components/Navbar';
 import Sandesh from '@/components/Sandesh';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 const Page = () => {
+
+
     return (
         <>
             <Navbar />
@@ -15,11 +18,6 @@ const Page = () => {
                 </div>
 
                 <section className='w-full flex justify-center items-start flex-wrap mt-3 gap-3 overflow-visible mb-7'>
-                    <Sandesh />
-                    <Sandesh />
-                    <Sandesh />
-                    <Sandesh />
-                    <Sandesh />
                     <Sandesh />
                     <Sandesh />
                     <Sandesh />

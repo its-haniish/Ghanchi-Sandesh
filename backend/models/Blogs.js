@@ -5,6 +5,10 @@ const blogsSchema = new mongoose.Schema({
         type: String,
         default: ''
     },
+    slug: {
+        type: String,
+        required: true
+    },
     images: {
         type: [String],
         default: []
@@ -17,9 +21,9 @@ const blogsSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    time: {
-        type: Number,
-        required: true
+    createdAt: {
+        type: Date,
+        default: Date.now
     },
     location: {
         type: String,

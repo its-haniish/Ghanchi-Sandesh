@@ -4,9 +4,9 @@ import './index.css';
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from './redux/store';
-import Login from './screens/Login.jsx'
 import App from "./screens/App.jsx"
 import AddPost from './screens/AddPost.jsx';
+import EditPost from './screens/EditPost.jsx';
 
 
 const router = createBrowserRouter([
@@ -15,12 +15,12 @@ const router = createBrowserRouter([
     element: <App />
   },
   {
-    path: "/login",
-    element: <Login />
-  },
-  {
     path: "/add-post",
     element: <AddPost />
+  },
+  {
+    path: "/edit/:slug",
+    element: <EditPost />
   }
 ])
 

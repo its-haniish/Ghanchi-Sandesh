@@ -1,9 +1,9 @@
 const Blogs = require("../models/Blogs.js");
 
 const updateBlog = async (req, res) => {
-    const { _id, post } = req.body;
+    const { slug, post } = req.body;
     try {
-        let response = await Blogs.updateOne({ _id }, { post });
+        let response = await Blogs.updateOne({ slug }, { ...post });
         if (response.modifiedCount === 1) {
             res.status(200).json({ msg: "Post updated successfully." })
         } else {

@@ -2,7 +2,7 @@ const login = async (req, res) => {
     const { email, password } = req.body;
 
     try {
-        if (email === "itshaniish@gmail.com" && password === "123456") {
+        if (email === "itshaniish@gmail.com" && password === process.env.LOGIN_KEY) {
             res.status(200).json({
                 message: "Login successfull",
             })

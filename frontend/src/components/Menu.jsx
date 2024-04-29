@@ -18,14 +18,14 @@ const Menu = ({ closeMenu }) => {
     }, [menuRef, closeMenu]);
 
     return (
-        <section ref={menuRef} className='absolute bottom-[-28.2vh] left-0 w-full h-fit menu-bar-style shadow shadow-red-300'>
+        <section ref={menuRef} className='absolute bottom-[-27.5vh] left-0 w-full h-fit menu-bar-style shadow shadow-red-300'>
             <div className='w-full flex flex-col justify-start items-center gap-3 mt-3'>
                 <Link href="/" onClick={closeMenu} className='text-center text-white text-xl font-bold'>Home</Link>
                 <Link href="/" onClick={closeMenu} className='text-center text-white text-xl font-bold'>About Us</Link>
                 <Link href="/" onClick={closeMenu} className='text-center text-white text-xl font-bold'>Contact Us</Link>
             </div>
 
-            <ul className='w-full flex justify-center item gap-5 mt-12'>
+            <ul className='w-full flex justify-center item gap-5 mt-12 mb-4'>
                 <li >
                     <img src='/facebook.png' alt='ghanchi sandesh facebook link' className='rounded w-12' />
                 </li>

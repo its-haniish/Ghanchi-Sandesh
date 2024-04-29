@@ -60,7 +60,7 @@ const Page = ({ params }) => {
             <Navbar />
             {
                 loading ?
-                    <div className='flex flex-col gap-3 justify-center items-center w-full h-full'>
+                    <div className='flex flex-col gap-3 justify-center items-center w-full h-full mt-[-10vh]'>
                         <RotatingLines width='100' strokeColor='#e51a4b' />
                         <p className='text-2xl text-[#e51a4b] font-bold'>Please wait...</p>
                     </div> :

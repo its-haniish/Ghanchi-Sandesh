@@ -27,7 +27,8 @@ const Page = ({ params }) => {
         });
     };
 
-    const handleShare = async (url) => {
+    const handleShare = async () => {
+        const url = window.location.href;
         if (navigator.share) {
             try {
                 await navigator.share({
@@ -49,6 +50,7 @@ const Page = ({ params }) => {
             }
         }
     };
+
 
     useEffect(() => {
         getPostInfo()
@@ -88,7 +90,7 @@ const Page = ({ params }) => {
 
                         <div className='flex justify-center items-center w-full mt-3'>
                             <button className='bg-[#e51a4b]  py-[2px] px-6 rounded mb-9 flex justify-center items-center gap-1'
-                                onClick={() => handleShare(`${process.env.NEXT_PUBLIC_BASE_URL}/news/${params.slug}`)}>
+                                onClick={handleShare}>
                                 <IoShareSocial color='white' />
                                 <span className='text-white text-l font-bold '>शेयर</span>
                             </button>

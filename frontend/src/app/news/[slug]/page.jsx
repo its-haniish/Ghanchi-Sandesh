@@ -61,7 +61,7 @@ const Page = ({ params }) => {
             {
                 loading ?
                     <div className='w-full h-full flex justify-center items-center'>
-                        <RotatingLines height="150" width="150" strokeColor="#e51a4b" />
+                        <RotatingLines height="100" width="100" strokeColor="#e51a4b" />
                     </div> :
                     <main className='pt-2 px-5 w-[100vw] overflow-y-scroll'>
 

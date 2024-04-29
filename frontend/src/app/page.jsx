@@ -2,14 +2,16 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from '@/components/Navbar'
 import NewsPreview from '@/components/NewsPreview'
+import { RotatingLines } from 'react-loader-spinner'
 
 
 const Home = () => {
   const [blogs, setBlogs] = useState([])
-  // const [page, setPage] = useState(1)
+  const [loading, setLoading] = useState(false)
 
 
   const getAllPosts = async () => {
+    setLoading(true)
     const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/get-all-posts`, {
       method: 'POST',
       headers: { "Content-Type": "application/json" }
@@ -20,6 +22,7 @@ const Home = () => {
     if (result?.msg === "Unable to fetch data.") {
       return alert(result.msg)
     }
+    setLoading(false)
     setBlogs(result.response)
   }
 
@@ -30,6 +33,7 @@ const Home = () => {
   return (
     <>
       <Navbar />
+
       <main className='w-screen h-fit flex flex-col justify-start items-center px-2 '>
         {/* dynamic feed wrapper  */}
         <div className='w-full'>
@@ -39,18 +43,23 @@ const Home = () => {
           </h2>
         </div>
 
-        {/* top new wrapper */}
-        <div className='flex flex-col w-full mt-2 justify-start items-center gap-3 overflow-y-visible mb-5'>
-          {
-            blogs?.map(post => {
-              const { _id } = post;
-              return (
-                <NewsPreview key={_id} post={post} />
-              )
-            })
-          }
-        </div>
-      </main>
+        {
+          loading ?
+            <div className='w-full h-full flex justify-center items-center pt-[20vh]'>
+              <RotatingLines height="100" width="100" strokeColor="#e51a4b" />
+            </div>
+            : <div className='flex flex-col w-full mt-2 justify-start items-center gap-3 overflow-y-visible mb-5'>
+              {
+                blogs?.map(post => {
+                  const { _id } = post;
+                  return (
+                    <NewsPreview key={_id} post={post} />
+                  )
+                })
+
+              }
+            </div>}
+      </main >
     </>
   )
 }

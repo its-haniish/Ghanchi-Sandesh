@@ -1,9 +1,10 @@
-"use client"
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import Link from "next/link";
 
-const Menu = ({ closeMenu }) => {
+const Menu = ({ closeMenu, navbarHeight }) => {
     const menuRef = useRef(null);
+    const [isScrolling, setIsScrolling] = useState(false);
+    const [isTouchScrolling, setIsTouchScrolling] = useState(false);
 
     useEffect(() => {
         function handleClickOutside(event) {
@@ -11,14 +12,36 @@ const Menu = ({ closeMenu }) => {
                 closeMenu();
             }
         }
+
+        function handleScroll() {
+            setIsScrolling(true); // Set scrolling to true when scroll occurs
+        }
+
+        function handleTouchMove() {
+            setIsTouchScrolling(true); // Set touch scrolling to true when touch scroll occurs
+        }
+
         document.addEventListener("mousedown", handleClickOutside);
+        document.addEventListener("scroll", handleScroll);
+        document.addEventListener("touchmove", handleTouchMove, { passive: true });
+
         return () => {
             document.removeEventListener("mousedown", handleClickOutside);
+            document.removeEventListener("scroll", handleScroll);
+            document.removeEventListener("touchmove", handleTouchMove);
         };
     }, [menuRef, closeMenu]);
 
+    useEffect(() => {
+        if (isScrolling || isTouchScrolling) {
+            closeMenu(); // Close menu when scrolling occurs
+            setIsScrolling(false); // Reset scrolling state
+            setIsTouchScrolling(false); // Reset touch scrolling state
+        }
+    }, [isScrolling, isTouchScrolling, closeMenu]);
+
     return (
-        <section ref={menuRef} className='absolute  left-0 w-full h-fit menu-bar-style shadow shadow-red-300'>
+        <section ref={menuRef} className={`absolute top-[${navbarHeight}px] left-0 w-full h-fit menu-bar-style shadow shadow-red-300`}>
             <div className='w-full flex flex-col justify-start items-center gap-3 mt-3'>
                 <Link href="/" onClick={closeMenu} className='text-center text-white text-xl font-bold'>Home</Link>
                 <Link href="/" onClick={closeMenu} className='text-center text-white text-xl font-bold'>About Us</Link>

@@ -27,7 +27,7 @@ const NewsPreview = ({ post }) => {
                     {truncatedText}...
                 </p>
 
-                <img src={featured || "/Ghanchi Sandesh.jpg"} alt="" className='w-[200px] h-[110px] rounded-md' />
+                <img src={featured || "/Ghanchi Sandesh.jpg"} alt="" className='w-[200px] h-[90px] rounded-md' />
 
             </div>
         </Link>

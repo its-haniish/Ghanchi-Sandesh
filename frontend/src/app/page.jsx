@@ -45,8 +45,9 @@ const Home = () => {
 
         {
           loading ?
-            <div className='w-full h-full flex justify-center items-center pt-[28vh] z-0'>
-              <RotatingLines height="100" width="100" strokeColor="#e51a4b" />
+            <div className='flex flex-col gap-3 justify-center items-center w-full h-full mt-[20vh]'>
+              <RotatingLines width='100' strokeColor='#e51a4b' />
+              <p className='text-2xl text-[#e51a4b] font-bold'>Please wait...</p>
             </div>
             : <div className='flex flex-col w-full mt-2 justify-start items-center gap-3 overflow-y-visible mb-5'>
               {

@@ -35,7 +35,9 @@ const App = () => {
         blogTo="/add-post"
         blogTitle="Add Post"
         articleTo="/articles"
-        articleTitle="All Articles" />
+        articleTitle="All Articles"
+        videoTo="/videos"
+        videoTitle="All Videos" />
       {
         loading ?
           <div className='flex flex-col gap-3 justify-center items-center w-full h-full mt-[20vh]'>

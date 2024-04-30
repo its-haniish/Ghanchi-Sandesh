@@ -10,6 +10,9 @@ import EditPost from './screens/EditPost.jsx';
 import Articles from './screens/Articles.jsx';
 import AddArticle from './screens/AddArticle.jsx';
 import EditArticle from './screens/EditArticle.jsx';
+import Videos from "./screens/Videos.jsx"
+import AddVideo from './screens/AddVideo.jsx';
+import EditVideo from "./screens/EditVideo.jsx"
 
 
 const router = createBrowserRouter([
@@ -36,7 +39,19 @@ const router = createBrowserRouter([
   {
     path: "/edit-article/:slug",
     element: <EditArticle />
-  }
+  },
+  {
+    path: "/videos",
+    element: <Videos />
+  },
+  {
+    path: "/add-video",
+    element: <AddVideo />
+  },
+  {
+    path: "/edit-video/:encodedLink",
+    element: <EditVideo />
+  },
 ])
 
 

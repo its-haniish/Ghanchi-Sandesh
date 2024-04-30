@@ -3,12 +3,11 @@ import Navbar from '../components/Navbar';
 import { RotatingLines } from 'react-loader-spinner';
 import { useNavigate } from 'react-router-dom';
 
-const AddArticle = () => {
+const AddVideo = () => {
     const [loading, setLoading] = useState(false);
     const [formData, setFormData] = useState({
-        title: '',
-        featured: '',
-        article: ''
+        link: '',
+        description: ''
     });
     const navigate = useNavigate()
 
@@ -18,7 +17,7 @@ const AddArticle = () => {
         e.preventDefault();
         setLoading(true)
         try {
-            let res = await fetch(`${process.env.REACT_APP_BASE_URL}/create-article`, {
+            let res = await fetch(`${process.env.REACT_APP_BASE_URL}/create-video`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(formData)
@@ -26,11 +25,11 @@ const AddArticle = () => {
             let result = await res.json()
             setLoading(false)
             alert(result?.msg)
-            return navigate("/articles")
+            return navigate("/videos")
         } catch (error) {
             setLoading(false)
             alert(error)
-            return navigate("/articles")
+            return navigate("/videos")
         }
 
     };
@@ -46,51 +45,27 @@ const AddArticle = () => {
                 videoTitle="All Videos" />
 
             <form className="flex flex-col w-full px-2 justify-start items-center gap-3 overflow-scroll" onSubmit={handleSubmit}>
-                <h2 className="text-xl mt-1 font-bold">CREATE ARTICLE</h2>
+                <h2 className="text-xl mt-1 font-bold">CREATE VIDEO</h2>
 
                 <div className="flex flex-col justify-start items-center w-full mt-2 h-fit">
-                    <label className="font-semibold">TITLE:</label>
+                    <label className="font-semibold">LINK:</label>
                     <textarea
                         type="text"
                         placeholder="Enter title here..."
                         className="bg-gray-100 w-[80%] text-center h-fit px-2 py-1 text-lg mt-1 rounded-md"
-                        name="title"
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-
-                <div className="flex flex-col justify-start items-center w-full mt-2 h-fit">
-                    <label className="font-semibold">SLUG:</label>
-                    <input
-                        type="text"
-                        placeholder="Enter slug here..."
-                        className="bg-gray-100 w-[80%] text-center h-fit px-2 py-1 text-lg mt-1 rounded-md"
-                        name="slug"
+                        name="link"
                         onChange={handleChange}
                         required
                     />
                 </div>
 
                 <div className='flex flex-col justify-start items-center w-full mt-2 h-fit'>
-                    <label className='font-semibold'>FEATURED IMAGE:</label>
-                    <input
-                        type="text"
-                        placeholder='Enter link here...'
-                        className='bg-gray-100 w-[80%] text-center h-fit px-2 py-1 text-lg mt-1 rounded-md'
-                        name='featured'
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-
-                <div className='flex flex-col justify-start items-center w-full mt-2 h-fit'>
-                    <label className='font-semibold'>ARTICLE:</label>
+                    <label className='font-semibold'>DESCRIPTION:</label>
                     <textarea
                         type="text"
                         placeholder='This article is about the...'
-                        className='bg-gray-100 w-[80%] text-center px-2 py-1 text-lg mt-1 h-[20vh] rounded-md'
-                        name='article'
+                        className='bg-gray-100 w-[80%] text-center px-2 py-1 text-lg mt-1 h-[40vh] rounded-md'
+                        name='description'
                         onChange={handleChange}
                         required
                     />
@@ -104,4 +79,4 @@ const AddArticle = () => {
     );
 };
 
-export default AddArticle;
+export default AddVideo;

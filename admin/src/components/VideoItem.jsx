@@ -1,46 +1,47 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { MdDeleteForever } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 
-const ArticleItem = ({ index, slug, setArticles }) => {
+const VideoItem = ({ index, link, setVideos, description }) => {
+    const [trauntedText] = useState(description.substring(0, 25))
     const navigate = useNavigate()
 
-    const deletePost = async (slug) => {
-        const confirmation = window.confirm(`Are you sure you want to delete ${slug} ?`);
+    const deleteVideo = async (link) => {
+        const confirmation = window.confirm(`Are you sure you want to delete ${link} ?`);
         if (!confirmation) {
             return;
         }
+        const encodedLink = encodeURIComponent(link)
         try {
-            let res = await fetch(`${process.env.REACT_APP_BASE_URL}/delete-article`, {
+            let res = await fetch(`${process.env.REACT_APP_BASE_URL}/delete-video`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ slug })
+                body: JSON.stringify({ link: encodedLink })
             })
             let result = await res.json()
-            if (result?.msg === "Article deleted successfully.") {
-                setArticles(prev => prev.filter(elem => elem.slug !== slug))
+            if (result?.msg === "Video deleted successfully.") {
+                setVideos(prev => prev.filter(elem => elem.link !== link))
             }
         } catch (error) {
             alert(error);
         }
     }
 
-
     return (
 
         <div className='w-full h-[6vh] px-2 rounded-md flex justify-between items-center'>
 
             <p className='w-fit text-xl'>{index + 1}.</p>
-            <p className='w-[80%] text-nowrap overflow-ellipsis text-xl text-blue-900'>{slug}</p>
+            <p className='w-[80%] text-nowrap overflow-ellipsis text-xl text-blue-900'>{trauntedText}...</p>
             <div className='flex justify-center items-center gap-1'>
                 <button onClick={() => {
-                    navigate(`/edit-article/${slug}`)
+                    navigate(`/edit-video/${encodeURIComponent(link)}`)
                 }}>
                     <FaEdit color='green' size={23} />
 
                 </button>
-                <button onClick={() => deletePost(slug)}>
+                <button onClick={() => deleteVideo(link)}>
                     <MdDeleteForever color='red' size={25} />
                 </button>
             </div>
@@ -48,4 +49,4 @@ const ArticleItem = ({ index, slug, setArticles }) => {
     )
 }
 
-export default ArticleItem
+export default VideoItem

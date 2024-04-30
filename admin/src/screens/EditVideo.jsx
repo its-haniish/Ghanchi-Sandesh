@@ -5,31 +5,29 @@ import { RotatingLines } from 'react-loader-spinner';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
-
-const EditArticle = () => {
-    const { slug } = useParams();
+const EditVideo = () => {
+    const { encodedLink } = useParams();
+    const [link] = useState(decodeURIComponent(encodedLink))
     const [loading, setLoading] = useState(false);
     const [formData, setFormData] = useState({
-        title: '',
-        featured: '',
-        article: '',
-        slug: ''
+        link: '',
+        description: ''
     });
     const navigate = useNavigate();
 
     const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
-    const getArticleInfo = async () => {
-        let res = await fetch(`${process.env.REACT_APP_BASE_URL}/get-article`, {
+    const getVideoInfo = async () => {
+        let res = await fetch(`${process.env.REACT_APP_BASE_URL}/get-video`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ slug })
+            body: JSON.stringify({ link: encodedLink })
         });
         let result = await res.json();
         if (result?.msg) {
             alert(result.msg);
             setLoading(false);
-            return navigate("/articles");
+            return navigate("/videos");
         }
         setLoading(false);
         return setFormData({
@@ -41,19 +39,19 @@ const EditArticle = () => {
         e.preventDefault();
         setLoading(true)
 
-        let res = await fetch(`${process.env.REACT_APP_BASE_URL}/update-article`, {
+        let res = await fetch(`${process.env.REACT_APP_BASE_URL}/update-video`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ slug, article: formData })
+            body: JSON.stringify({ video: formData })
         })
         let result = await res.json()
         setLoading(false)
         alert(result?.msg)
-        return navigate("/articles")
+        return navigate("/videos")
     };
 
     useEffect(() => {
-        getArticleInfo();
+        getVideoInfo();
     }, []);
 
     return (
@@ -67,55 +65,29 @@ const EditArticle = () => {
                 videoTitle="All Videos" />
 
             <form className="flex flex-col w-full px-2 justify-start items-center gap-3 overflow-scroll" onSubmit={handleSubmit}>
-                <h2 className="text-xl mt-1 font-bold">EDIT ARTICLE</h2>
+                <h2 className="text-xl mt-1 font-bold">EDIT VIDEO</h2>
 
                 <div className="flex flex-col justify-start items-center w-full mt-2 h-fit">
-                    <label className="font-semibold">TITLE:</label>
+                    <label className="font-semibold">LINK:</label>
                     <textarea
                         type="text"
                         placeholder="Enter title here..."
                         className="bg-gray-100 w-[80%] text-center h-fit px-2 py-1 text-lg mt-1 rounded-md"
-                        name="title"
+                        name="link"
                         onChange={handleChange}
-                        value={formData.title}
-                        required
-                    />
-                </div>
-
-                <div className="flex flex-col justify-start items-center w-full mt-2 h-fit">
-                    <label className="font-semibold">SLUG:</label>
-                    <input
-                        type="text"
-                        placeholder="Enter slug here..."
-                        className="bg-gray-100 w-[80%] text-center h-fit px-2 py-1 text-lg mt-1 rounded-md"
-                        name="slug"
-                        value={formData.slug}
-                        onChange={handleChange}
+                        value={formData.link}
                         required
                     />
                 </div>
 
                 <div className='flex flex-col justify-start items-center w-full mt-2 h-fit'>
-                    <label className='font-semibold'>FEATURED IMAGE:</label>
-                    <input
-                        type="text"
-                        placeholder='Enter link here...'
-                        className='bg-gray-100 w-[80%] text-center h-fit px-2 py-1 text-lg mt-1 rounded-md'
-                        name='featured'
-                        onChange={handleChange}
-                        value={formData.featured}
-                        required
-                    />
-                </div>
-
-                <div className='flex flex-col justify-start items-center w-full mt-2 h-fit'>
-                    <label className='font-semibold'>ARTICLE:</label>
+                    <label className='font-semibold'>DESCRIPTION:</label>
                     <textarea
                         type="text"
                         placeholder='Enter news here...'
-                        className='bg-gray-100 w-[80%] text-center px-2 py-1 text-lg mt-1 h-[30vh] rounded-md'
-                        value={formData.article}
-                        name='article'
+                        className='bg-gray-100 w-[80%] text-center px-2 py-1 text-lg mt-1 h-[40vh] rounded-md'
+                        value={formData.description}
+                        name='description'
                         onChange={handleChange}
                         required
                     />
@@ -129,4 +101,4 @@ const EditArticle = () => {
     );
 };
 
-export default EditArticle;
+export default EditVideo;

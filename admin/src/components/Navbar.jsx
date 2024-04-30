@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { FaPlus } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 
 
-const Navbar = ({ blogTo, blogTitle, articleTo, articleTitle }) => {
+const Navbar = ({ blogTo, blogTitle, articleTo, articleTitle, videoTo, videoTitle }) => {
 
     return (
         <>
@@ -12,7 +12,7 @@ const Navbar = ({ blogTo, blogTitle, articleTo, articleTitle }) => {
                 <div className='w-full h-full flex justify-between items-center'>
 
                     <NavLink to="/" className="mt-[-4px]">
-                        <img src="/Ghanchi Sandesh.jpg" alt="Ghanchi Sandesh" className='w-[130px] bg-none border-none' />
+                        <img src="/Ghanchi Sandesh.jpg" alt="Ghanchi Sandesh" className='w-[60px] bg-none border-none' />
                     </NavLink>
 
                     <NavLink className='px-2 py-[1px] bg-white flex justify-center items-center gap-1 rounded w-fit h-5 flex-nowrap' to={blogTo} >
@@ -35,6 +35,18 @@ const Navbar = ({ blogTo, blogTitle, articleTo, articleTitle }) => {
 
                         <span className=' text-[#e51a4b] text-sm font-bold text-nowrap'>
                             {articleTitle}
+                        </span>
+
+                    </NavLink>
+
+                    <NavLink className='px-2 py-[1px] bg-white flex justify-center items-center gap-1 rounded w-fit h-5 flex-nowrap' to={videoTo} >
+                        {
+                            videoTitle === "All Videos" ? null
+                                : <FaPlus color='#dc214c' />
+                        }
+
+                        <span className=' text-[#e51a4b] text-sm font-bold text-nowrap'>
+                            {videoTitle}
                         </span>
 
                     </NavLink>

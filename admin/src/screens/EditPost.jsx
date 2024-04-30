@@ -67,11 +67,13 @@ const EditPost = () => {
 
     return (
         <>
-                        <Navbar
+            <Navbar
                 blogTo="/"
                 blogTitle="All Posts"
                 articleTo="/article"
-                articleTitle="All Articles" />
+                articleTitle="All Articles"
+                videoTo="/videos"
+                videoTitle="All Videos" />
 
             <form className="flex flex-col w-full px-2 justify-start items-center gap-3 overflow-scroll" onSubmit={handleSubmit}>
                 <h2 className="text-xl mt-1 font-bold">EDIT POST</h2>

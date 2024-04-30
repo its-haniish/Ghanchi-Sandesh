@@ -65,7 +65,7 @@ const Page = ({ params }) => {
                         <RotatingLines width='100' strokeColor='#e51a4b' />
                         <p className='text-2xl text-[#e51a4b] font-bold'>Please wait...</p>
                     </div> :
-                    <main className='pt-2 px-5 w-[100vw] overflow-y-scroll'>
+                    <main className='pt-2 px-5 w-[100vw] overflow-y-scroll mb-24'>
 
                         <div className='flex justify-start items-center gap-1 h-[16%]'>
                             <FaLocationDot color='#e51a4b' size={14} />

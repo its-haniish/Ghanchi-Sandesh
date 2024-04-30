@@ -35,7 +35,7 @@ const Home = () => {
     <>
       <Navbar />
 
-      <main className='w-screen h-fit flex flex-col justify-start items-center px-2 '>
+      <main className='w-screen h-fit flex flex-col justify-start items-center px-2 mb-24'>
         {/* dynamic feed wrapper  */}
         <div className='w-full'>
           {/* top new heading */}
@@ -50,7 +50,7 @@ const Home = () => {
               <RotatingLines width='100' strokeColor='#e51a4b' />
               <p className='text-2xl text-[#e51a4b] font-bold'>Please wait...</p>
             </div>
-            : <div className='flex flex-col w-full mt-2 justify-start items-center gap-3 overflow-y-visible mb-12'>
+            : <div className='flex flex-col w-full mt-2 justify-start items-center gap-3 overflow-y-visible'>
               {
                 blogs?.map(post => {
                   const { _id } = post;

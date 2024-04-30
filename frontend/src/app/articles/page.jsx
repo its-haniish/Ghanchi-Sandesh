@@ -1,19 +1,18 @@
 "use client"
 import React, { useEffect, useState } from 'react'
 import Navbar from '@/components/Navbar'
-import NewsPreview from '@/components/NewsPreview'
+import ArticlePreview from '@/components/ArticlePreview'
 import { RotatingLines } from 'react-loader-spinner'
 import FooterMenu from '@/components/FooterMenu'
 
 
-const Home = () => {
+const Articles = () => {
   const [blogs, setBlogs] = useState([])
   const [loading, setLoading] = useState(false)
 
-
-  const getAllPosts = async () => {
+  const getAllArticles = async () => {
     setLoading(true)
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/get-all-posts`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/get-all-articles`, {
       method: 'POST',
       headers: { "Content-Type": "application/json" }
     });
@@ -24,12 +23,12 @@ const Home = () => {
       return alert(result.msg)
     }
     setLoading(false)
-    const blogReverse = result.response.reverse()
-    setBlogs(blogReverse)
+    const articleReverse = result.response.reverse()
+    setBlogs(articleReverse)
   }
 
   useEffect(() => {
-    getAllPosts()
+    getAllArticles()
   }, [])
 
   return (
@@ -41,7 +40,7 @@ const Home = () => {
         <div className='w-full'>
           {/* top new heading */}
           <h2 className='px-1 bg-[#e51a4b] text-white text-sm font-bold rounded w-fit h-5 text-nowrap mt-2 text-l'>
-            टॉप न्यूज़
+            TOP ARTICLES
           </h2>
         </div>
 
@@ -56,7 +55,7 @@ const Home = () => {
                 blogs?.map(post => {
                   const { _id } = post;
                   return (
-                    <NewsPreview key={_id} post={post} />
+                    <ArticlePreview key={_id} post={post} />
                   )
                 })
 
@@ -68,4 +67,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default Articles

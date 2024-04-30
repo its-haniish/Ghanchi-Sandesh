@@ -6,7 +6,7 @@ const createBlog = async (req, res) => {
         const response = await Blogs.create({ ...req.body })
         if (response) {
             console.log("Created post : ", response);
-            res.status(200).json({ msg: "Post created successfully.", post: response });
+            res.status(200).json({ msg: "Post created successfully.", post: response.slug });
         } else {
             console.log("Error creating post.");
             res.status(203).json({ msg: "Error creating post." });

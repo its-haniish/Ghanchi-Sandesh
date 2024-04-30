@@ -3,7 +3,7 @@ import { FaPlus } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 
 
-const Navbar = ({ to, title }) => {
+const Navbar = ({ blogTo, blogTitle, articleTo, articleTitle }) => {
 
     return (
         <>
@@ -15,17 +15,31 @@ const Navbar = ({ to, title }) => {
                         <img src="/Ghanchi Sandesh.jpg" alt="Ghanchi Sandesh" className='w-[130px] bg-none border-none' />
                     </NavLink>
 
-                    <NavLink className='px-2 py-[1px] bg-white flex justify-center items-center gap-1 rounded w-fit h-5 flex-nowrap' to={to} >
+                    <NavLink className='px-2 py-[1px] bg-white flex justify-center items-center gap-1 rounded w-fit h-5 flex-nowrap' to={blogTo} >
                         {
-                            title === "All Posts" ? null
+                            blogTitle === "All Posts" ? null
                                 : <FaPlus color='#dc214c' />
                         }
 
                         <span className=' text-[#e51a4b] text-sm font-bold text-nowrap'>
-                            {title}
+                            {blogTitle}
                         </span>
 
                     </NavLink>
+
+                    <NavLink className='px-2 py-[1px] bg-white flex justify-center items-center gap-1 rounded w-fit h-5 flex-nowrap' to={articleTo} >
+                        {
+                            articleTitle === "All Articles" ? null
+                                : <FaPlus color='#dc214c' />
+                        }
+
+                        <span className=' text-[#e51a4b] text-sm font-bold text-nowrap'>
+                            {articleTitle}
+                        </span>
+
+                    </NavLink>
+
+
 
                 </div >
 

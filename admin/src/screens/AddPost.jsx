@@ -45,7 +45,11 @@ const AddPost = () => {
 
     return (
         <>
-            <Navbar to="/" title="All Posts" />
+            <Navbar
+                blogTo="/"
+                blogTitle="All Posts"
+                articleTo="/articles"
+                articleTitle="All Articles" />
 
             <form className="flex flex-col w-full px-2 justify-start items-center gap-3 overflow-scroll" onSubmit={handleSubmit}>
                 <h2 className="text-xl mt-1 font-bold">CREATE POST</h2>

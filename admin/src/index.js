@@ -7,6 +7,9 @@ import store from './redux/store';
 import App from "./screens/App.jsx"
 import AddPost from './screens/AddPost.jsx';
 import EditPost from './screens/EditPost.jsx';
+import Articles from './screens/Articles.jsx';
+import AddArticle from './screens/AddArticle.jsx';
+import EditArticle from './screens/EditArticle.jsx';
 
 
 const router = createBrowserRouter([
@@ -21,6 +24,18 @@ const router = createBrowserRouter([
   {
     path: "/edit/:slug",
     element: <EditPost />
+  },
+  {
+    path: "/articles",
+    element: <Articles />
+  },
+  {
+    path: "/add-article",
+    element: <AddArticle />
+  },
+  {
+    path: "/edit-article/:slug",
+    element: <EditArticle />
   }
 ])
 

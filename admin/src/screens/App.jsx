@@ -20,7 +20,8 @@ const App = () => {
       return alert(result.msg)
     }
     setLoading(false)
-    setBlogs(result.response)
+
+    setBlogs(result.response.reverse())
   }
 
 
@@ -30,7 +31,11 @@ const App = () => {
 
   return (
     <>
-      <Navbar to="/add-post" title="Add Post" />
+      <Navbar
+        blogTo="/add-post"
+        blogTitle="Add Post"
+        articleTo="/articles"
+        articleTitle="All Articles" />
       {
         loading ?
           <div className='flex flex-col gap-3 justify-center items-center w-full h-full mt-[20vh]'>

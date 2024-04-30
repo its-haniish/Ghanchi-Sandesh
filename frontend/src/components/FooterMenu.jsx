@@ -19,7 +19,9 @@ const FooterMenu = () => {
                     <FaPlayCircle size={30} fill='black' color='black' />
                 </li>
                 <li className='p-1 border-x border-r-0 border-slate-400 w-1/4 flex justify-center items-center'>
-                    <MdEditDocument size={30} fill='black' color='black' />
+                    <Link href="/articles" className='text-center text-white text-xl font-bold'>
+                        <MdEditDocument size={30} fill='black' color='black' />
+                    </Link>
                 </li>
                 <li className='p-1 border-x border-r-0 border-slate-400 w-1/4 flex justify-center items-center'>
                     <FaUser size={30} fill='black' color='black' />

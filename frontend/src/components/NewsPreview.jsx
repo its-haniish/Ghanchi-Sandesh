@@ -7,7 +7,7 @@ import Link from 'next/link';
 const NewsPreview = ({ post }) => {
     const { slug, location, featured, title, news } = post;
 
-    const truncatedText = news.substring(0, 150);
+    const truncatedText = news.substring(0, 110);
 
     return (
         <Link href={`/news/${slug}`} className='bg-gray-100 rounded-md py-1 px-2 w-full h-[21vh]' >
@@ -18,7 +18,7 @@ const NewsPreview = ({ post }) => {
             </div>
 
             <h2 className='h-[15%] font-extrabold text-l text-[blue] underline whitespace-nowrap overflow-ellipsis'>
-                ा{title}
+                {title}
             </h2>
 
             <div className='flex justify-start items-center h-[70%] mt-1 gap-2'>
@@ -27,7 +27,7 @@ const NewsPreview = ({ post }) => {
                     {truncatedText}...
                 </p>
 
-                <img src={featured || "/Ghanchi Sandesh.jpg"} alt="" className='w-[200px] h-[90px] rounded-md' />
+                <img src={featured || "/Ghanchi Sandesh.jpg"} alt={featured || ""} className='w-[200px] h-[90px] rounded-md' />
 
             </div>
         </Link>

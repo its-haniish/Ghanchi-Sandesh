@@ -28,7 +28,7 @@ const Navbar = () => {
     }, []);
 
     return (
-        <>
+        <header>
             <nav ref={navbarRef} className='w-screen h-[7vh] bg-[#e51a4b] px-2 py-0 overflow-visible'>
 
                 <div className='w-full h-full flex justify-between items-center'>
@@ -56,7 +56,7 @@ const Navbar = () => {
                 </div >
             </nav >
             {showMenu && <Menu closeMenu={closeMenu} navbarHeight={navbarHeight} />}
-        </>
+        </header>
     )
 }
 

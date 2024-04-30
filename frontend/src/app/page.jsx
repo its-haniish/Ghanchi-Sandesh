@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import Navbar from '@/components/Navbar'
 import NewsPreview from '@/components/NewsPreview'
 import { RotatingLines } from 'react-loader-spinner'
+import FooterMenu from '@/components/FooterMenu'
 
 
 const Home = () => {
@@ -61,6 +62,7 @@ const Home = () => {
               }
             </div>}
       </main >
+      <FooterMenu />
     </>
   )
 }

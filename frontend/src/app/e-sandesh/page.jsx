@@ -1,10 +1,11 @@
 "use client"
+import FooterMenu from '@/components/FooterMenu';
 import Navbar from '@/components/Navbar';
 import Sandesh from '@/components/Sandesh';
 import React, { useEffect, useState } from 'react';
 
 const Page = () => {
-
+    const pdfs = ["जनवरी 2023", "जुलाई 2023", "जनवरी 2024"]
 
     return (
         <>
@@ -18,14 +19,13 @@ const Page = () => {
                 </div>
 
                 <section className='w-full flex justify-center items-start flex-wrap mt-3 gap-3 overflow-visible mb-7'>
-                    <Sandesh />
-                    <Sandesh />
-                    <Sandesh />
-
+                    {
+                        pdfs.map(pdf => (<Sandesh key={pdf} pdf={pdf} />))
+                    }
                 </section>
 
-
             </main>
+            <FooterMenu />
         </>
     )
 }

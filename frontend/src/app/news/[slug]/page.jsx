@@ -4,6 +4,7 @@ import Navbar from '@/components/Navbar';
 import { FaLocationDot } from "react-icons/fa6";
 import { IoShareSocial } from "react-icons/io5";
 import { RotatingLines } from 'react-loader-spinner';
+import FooterMenu from '@/components/FooterMenu';
 
 
 
@@ -98,6 +99,7 @@ const Page = ({ params }) => {
                         </div>
 
                     </main>}
+            <FooterMenu />
         </>
     );
 };

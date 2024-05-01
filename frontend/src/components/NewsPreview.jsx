@@ -52,11 +52,11 @@ const NewsPreview = ({ post }) => {
             <img src={featured || "/Ghanchi Sandesh.jpg"} alt={featured || ""} className='w-full aspect-video rounded-md shadow' />
 
 
-            <h2 className='h-fit w-full mt-1 font-extrabold text-lg text-[blue] text-left'>
+            <h2 className='h-fit w-full mt-1 font-bold text-lg text-[blue] text-left'>
                 {title}
             </h2>
 
-            <p className='w-full mt-1 whitespace-normal text-wrap text-sm font-medium text-justify'>
+            <p className='w-full whitespace-normal text-wrap font-normal text-sm text-center'>
                 {truncatedText} <span className='text-left font-semibold text-[#e51a4b] text-l'>Read More...</span>
             </p>
 

@@ -101,21 +101,21 @@ const Page = ({ params }) => {
                             <p className='text-[#e51a4b] text-sm font-semibold'>By <span className='font-bold'>{data?.author}</span>, {getTimePassed(data?.createdAt)}</p>
                         </div>
 
-                        <h1 className='h-fit font-extrabold text-xl text-[blue] underline text-wrap text-justify'>
+                        <h1 className='h-fit font-bold text-xl text-[blue] underline text-wrap text-justify'>
                             {data?.title}
-                        </h2>
+                        </h1>
 
                         <div className='w-full flex justify-center items-center mt-3'>
-                            <img src={data?.featured || "/Ghanchi Sandesh.jpg"} alt={data?.featured} className='w-[90%] rounded-lg' />
+                            <img src={data?.featured || "/Ghanchi Sandesh.jpg"} alt={data?.featured} className='w-full rounded-lg' />
                         </div>
 
-                        <p className='w-full mt-1 text-wrap whitespace-normal text-lg font-normal'>
+                        <p className='w-full mt-1 text-wrap whitespace-normal text-lg text-center font-normal'>
                             {data?.news}
                         </p>
 
                         <div className='mt-2 w-full flex flex-wrap justify-center items-start gap-1'>
                             {
-                                data?.images?.map((image, index) => (<img key={image + index} src={image || "/Ghanchi Sandesh.jpg"} alt={image || ""} className='w-[150px] rounded-lg' />))
+                                data?.images?.map((image, index) => (<img key={image + index} src={image || "/Ghanchi Sandesh.jpg"} alt={image || ""} className='w-[160px] rounded-lg' />))
                             }
                         </div>
 

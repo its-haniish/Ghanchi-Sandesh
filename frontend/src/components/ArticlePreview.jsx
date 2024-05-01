@@ -10,16 +10,16 @@ const ArticlePreview = ({ post }) => {
     const truncatedText = article.substring(0, 110);
 
     return (
-        <Link href={`/articles/${slug}`} className='bg-gray-100 rounded-md py-1 px-2 w-full h-[21vh]' >
+        <Link href={`/articles/${slug}`} className='bg-gray-100 rounded-md py-1 px-2 w-full h-fit' >
 
-            <h2 className='h-[15%] font-extrabold text-l text-[blue] underline whitespace-nowrap overflow-ellipsis'>
+            <h2 className='h-fit font-bold text-l text-[blue] underline text-wrap whitespace-normal text-justify'>
                 {title}
             </h2>
 
-            <div className='flex justify-start items-center h-[70%] mt-1 gap-2'>
+            <div className='flex justify-start items-center fit gap-2 mb-1'>
 
-                <p className='w-full mt-1 whitespace-normal break-all text-sm font-medium text-justify'>
-                    {truncatedText}...
+                <p className='w-full whitespace-normal text-wrap font-normal text-sm text-left'>
+                    {truncatedText} <span className='text-left font-semibold text-[#e51a4b] text-l'>Read More...</span>
                 </p>
 
                 <img src={featured || "/Ghanchi Sandesh.jpg"} alt={featured || ''} className='w-[200px] h-[90px] rounded-md' />

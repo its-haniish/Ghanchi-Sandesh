@@ -93,15 +93,15 @@ const Page = ({ params }) => {
                     </div> :
                     <main className='pt-2 px-5 w-[100vw] overflow-y-scroll mb-14 mt-[50px]'>
 
-                        <h2 className='h-[16%] font-extrabold text-l text-[blue] underline text-wrap text-justify'>
+                        <h1 className='h-fit font-bold text-xl text-[blue] underline text-wrap text-justify'>
                             {data?.title}
-                        </h2>
+                        </h1>
 
                         <div className='w-full flex justify-center items-center mt-3'>
-                            <img src={data?.featured || "/Ghanchi Sandesh.jpg"} alt={data?.featured} className='w-[90%] rounded-lg' />
+                            <img src={data?.featured || "/Ghanchi Sandesh.jpg"} alt={data?.featured} className='w-full rounded-lg' />
                         </div>
 
-                        <p className='w-full mt-1 whitespace-normal break-all text-sm font-medium text-justify '>
+                        <p className='w-full mt-1 text-wrap whitespace-normal text-lg text-center font-normal'>
                             {data?.article}
                         </p>
 

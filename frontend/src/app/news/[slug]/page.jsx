@@ -101,7 +101,7 @@ const Page = ({ params }) => {
                             <p className='text-[#e51a4b] text-sm font-semibold'>By <span className='font-bold'>{data?.author}</span>, {getTimePassed(data?.createdAt)}</p>
                         </div>
 
-                        <h2 className='h-[16%] font-extrabold text-l text-[blue] underline text-wrap text-justify'>
+                        <h1 className='h-fit font-extrabold text-xl text-[blue] underline text-wrap text-justify'>
                             {data?.title}
                         </h2>
 

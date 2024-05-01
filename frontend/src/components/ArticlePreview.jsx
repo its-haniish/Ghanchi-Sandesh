@@ -18,7 +18,7 @@ const ArticlePreview = ({ post }) => {
 
             <div className='flex justify-start items-center h-[70%] mt-1 gap-2'>
 
-                <p className='w-[100%] h-full overflow-hidden overflow-ellipsis text-sm font-medium text-justify '>
+                <p className='w-full mt-1 whitespace-normal break-all text-sm font-medium text-justify'>
                     {truncatedText}...
                 </p>
 

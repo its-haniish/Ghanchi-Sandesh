@@ -109,7 +109,7 @@ const Page = ({ params }) => {
                             <img src={data?.featured || "/Ghanchi Sandesh.jpg"} alt={data?.featured} className='w-[90%] rounded-lg' />
                         </div>
 
-                        <p className='w-full mt-1 text-wrap whitespace-normal text-lg font-medium '>
+                        <p className='w-full mt-1 text-wrap whitespace-normal text-lg font-normal'>
                             {data?.news}
                         </p>
 

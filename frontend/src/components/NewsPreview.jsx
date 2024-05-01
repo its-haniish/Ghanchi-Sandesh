@@ -52,7 +52,7 @@ const NewsPreview = ({ post }) => {
             <img src={featured || "/Ghanchi Sandesh.jpg"} alt={featured || ""} className='w-full aspect-video rounded-md shadow' />
 
 
-            <h2 className='h-fit w-full mt-1 font-bold text-lg text-[blue] text-left'>
+            <h2 className='h-fit w-full mt-1 font-bold text-lg text-[blue] text-left underline'>
                 {title}
             </h2>
 

@@ -56,7 +56,7 @@ const NewsPreview = ({ post }) => {
                 {title}
             </h2>
 
-            <p className='w-full mt-1 whitespace-normal break-all text-sm font-medium text-justify '>
+            <p className='w-full mt-1 whitespace-normal text-wrap text-sm font-medium text-justify'>
                 {truncatedText} <span className='text-left font-semibold text-[#e51a4b] text-l'>Read More...</span>
             </p>
 

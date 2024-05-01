@@ -10,7 +10,7 @@ const Page = () => {
     return (
         <>
             <Navbar />
-            <main className='w-full px-3 overflow-scroll mt-[46px] mb-14'>
+            <main className='w-full px-3 overflow-scroll mt-[50px] mb-14'>
                 <div className='flex justify-center items-center'>
                     <h1 className='text-xl bg-white text-[#e51a4b] font-bold border-[#e51a4b] border-1 shadow-sm shadow-red-300 rounded w-fit h-fit py-1 px-4 mt-3'>
                         इ-संदेश

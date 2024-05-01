@@ -1,5 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import Link from "next/link";
+import { FaFacebookSquare, FaInstagramSquare, FaTwitterSquare, FaWhatsappSquare } from "react-icons/fa";
+
 
 const Menu = ({ closeMenu, showMenu }) => {
     const menuRef = useRef(null);
@@ -41,7 +43,7 @@ const Menu = ({ closeMenu, showMenu }) => {
     }, [isScrolling, isTouchScrolling, closeMenu]);
 
     return (
-        <section ref={menuRef} className={`absolute top-[${showMenu ? '46px' : "-100vh"}] duration-700 ease-in-out left-0 w-full h-fit menu-bar-style shadow shadow-red-300`}>
+        <section ref={menuRef} className={`absolute top-[${showMenu ? '3.3rem' : "-100vh"}] duration-700 ease-in-out left-0 w-full h-fit menu-bar-style shadow shadow-red-300`}>
             <div className='w-full flex flex-col justify-start items-center gap-3 mt-3'>
                 <Link href="/" onClick={closeMenu} className='text-center text-white text-xl font-bold'>Home</Link>
                 <Link href="/" onClick={closeMenu} className='text-center text-white text-xl font-bold'>About Us</Link>
@@ -49,17 +51,17 @@ const Menu = ({ closeMenu, showMenu }) => {
             </div>
 
             <ul className='w-full flex justify-center item gap-5 mt-12 mb-4'>
-                <li >
-                    <img src='/facebook.png' alt='ghanchi sandesh facebook link' className='rounded w-12' />
+                <li>
+                    <FaFacebookSquare size={25} color='black' />
                 </li>
                 <li>
-                    <img src='/twitter.png' alt='ghanchi sandesh facebook link' className=' rounded w-12' />
+                    <FaTwitterSquare size={25} color='black' />
                 </li>
                 <li>
-                    <img src='/instagram.png' alt='ghanchi sandesh facebook link' className='rounded w-12' />
+                    <FaInstagramSquare size={25} color='black' />
                 </li>
                 <li>
-                    <img src='/whatsapp.png' alt='ghanchi sandesh facebook link' className='rounded w-12' />
+                    <FaWhatsappSquare size={25} color='black' />
                 </li>
             </ul>
         </section>

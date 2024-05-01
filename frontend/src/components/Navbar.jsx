@@ -1,5 +1,5 @@
 "use client"
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import { FiMenu } from "react-icons/fi";
 import Link from "next/link";
 import Menu from './Menu.jsx';
@@ -10,15 +10,15 @@ const Navbar = () => {
     const [showMenu, setShowMenu] = useState(false);
 
     const openMenu = () => {
-        setShowMenu(prev => !prev)
-    }
+        setShowMenu(prev => !prev);
+    };
 
     const closeMenu = () => {
-        setShowMenu(false)
-    }
+        setShowMenu(false);
+    };
 
     return (
-        <header>
+        <>
             <nav className='fixed top-0 left-0 right-0 w-screen h-[7vh] bg-[#e51a4b] px-2 py-0 overflow-visible'>
 
                 <div className='w-full h-full flex justify-between items-center'>
@@ -28,7 +28,6 @@ const Navbar = () => {
                     </Link>
 
                     <div className='flex justify-end items-center w-[40%]'>
-
                         <Link className='px-1 bg-white text-[#e51a4b] text-sm
                     font-bold rounded w-fit h-5 text-nowrap' href="/e-sandesh" >
                             इ-संदेश
@@ -45,9 +44,9 @@ const Navbar = () => {
 
                 </div >
             </nav >
-            <Menu closeMenu={closeMenu} showMenu={showMenu} />
-        </header>
+            {<Menu closeMenu={closeMenu} showMenu={showMenu} />} {/* Conditionally render Menu */}
+        </>
     )
 }
 
-export default Navbar
+export default Navbar;

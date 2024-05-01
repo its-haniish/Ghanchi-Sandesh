@@ -30,7 +30,7 @@ const Navbar = () => {
                     <div className='flex justify-end items-center w-[40%]'>
                         <Link className='px-1 bg-white text-[#e51a4b] text-sm
                     font-bold rounded w-fit h-5 text-nowrap' href="/e-sandesh" >
-                            इ-संदेश
+                            ई-संदेश
                         </Link>
                     </div>
 

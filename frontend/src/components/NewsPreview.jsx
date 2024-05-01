@@ -7,7 +7,7 @@ import Link from 'next/link';
 const NewsPreview = ({ post }) => {
     const { slug, location, featured, title, news, createdAt, author } = post;
 
-    const truncatedText = news.substring(0, 150);
+    const truncatedText = news.substring(0, 170);
 
     function getTimePassed(utcTimestamp) {
         const currentTime = new Date();

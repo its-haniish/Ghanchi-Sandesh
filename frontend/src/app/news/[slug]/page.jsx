@@ -115,7 +115,7 @@ const Page = ({ params }) => {
 
                         <div className='mt-2 w-full flex flex-wrap justify-center items-start gap-1'>
                             {
-                                data?.images?.map((image, index) => (<img key={image + index} src={image || "/Ghanchi Sandesh.jpg"} alt={image || ""} className='w-[160px] rounded-lg' />))
+                                data?.images?.map((image, index) => (<img key={image + index} src={image || "/Ghanchi Sandesh.jpg"} alt={image || ""} className='w-[150px] rounded-lg' />))
                             }
                         </div>
 

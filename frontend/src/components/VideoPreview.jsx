@@ -18,7 +18,7 @@ const VideoPreview = ({ video }) => {
                 aria-controls
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             ></iframe>
-            <p className='w-[100%] p-1 h-fit text-sm font-medium text-justify'>{description}</p>
+            <p className='w-full mt-1 whitespace-normal break-all text-sm font-medium text-justify '>{description}</p>
         </section>
     )
 }

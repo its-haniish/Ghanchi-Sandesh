@@ -19,7 +19,7 @@ const ArticlePreview = ({ post }) => {
             <div className='flex justify-start items-center fit gap-2 mb-1'>
 
                 <p className='w-full whitespace-normal text-wrap font-normal text-sm text-left'>
-                    {truncatedText} <span className='text-left font-semibold text-[#e51a4b] text-l'>Read More...</span>
+                    {truncatedText} <span className='text-left font-semibold text-[#e51a4b] text-l'>आगे पढ़े...</span>
                 </p>
 
                 <img src={featured || "/Ghanchi Sandesh.jpg"} alt={featured || ''} className='w-[200px] h-[90px] rounded-md' />

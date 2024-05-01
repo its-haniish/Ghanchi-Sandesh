@@ -46,7 +46,7 @@ const NewsPreview = ({ post }) => {
                     <FaLocationDot color='#e51a4b' size={14} />
                     <span className='text-[#e51a4b] text-sm font-bold'>{location}</span>
                 </div>
-                <p className='text-[#e51a4b] text-sm font-semibold'>By <span className='font-bold'>{author}</span>, {time}</p>
+                <p className='text-[#e51a4b] text-sm font-semibold'>प्रेषक: <span className='font-bold'>{author}</span>, {time}</p>
             </div>
 
             <img src={featured || "/Ghanchi Sandesh.jpg"} alt={featured || ""} className='w-full aspect-video rounded-md shadow' />
@@ -57,7 +57,7 @@ const NewsPreview = ({ post }) => {
             </h2>
 
             <p className='w-full whitespace-normal text-wrap font-normal text-sm text-center'>
-                {truncatedText} <span className='text-left font-semibold text-[#e51a4b] text-l'>Read More...</span>
+                {truncatedText} <span className='text-left font-semibold text-[#e51a4b] text-l'>आगे पढ़े...</span>
             </p>
 
 

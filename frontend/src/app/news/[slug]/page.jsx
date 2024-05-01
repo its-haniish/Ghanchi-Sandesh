@@ -98,7 +98,7 @@ const Page = ({ params }) => {
                                 <FaLocationDot color='#e51a4b' size={14} />
                                 <span className='text-[#e51a4b] text-sm font-bold'>{data?.location}</span>
                             </div>
-                            <p className='text-[#e51a4b] text-sm font-semibold'>By <span className='font-bold'>{data?.author}</span>, {getTimePassed(data?.createdAt)}</p>
+                            <p className='text-[#e51a4b] text-sm font-semibold'>प्रेषक: <span className='font-bold'>{data?.author}</span>, {getTimePassed(data?.createdAt)}</p>
                         </div>
 
                         <h1 className='h-fit font-bold text-xl text-[blue] underline text-wrap text-justify'>

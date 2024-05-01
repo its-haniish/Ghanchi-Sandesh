@@ -4,21 +4,21 @@ import './index.css';
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from './redux/store';
-import App from "./screens/App.jsx"
-import AddPost from './screens/AddPost.jsx';
-import EditPost from './screens/EditPost.jsx';
-import Articles from './screens/Articles.jsx';
-import AddArticle from './screens/AddArticle.jsx';
-import EditArticle from './screens/EditArticle.jsx';
-import Videos from "./screens/Videos.jsx"
-import AddVideo from './screens/AddVideo.jsx';
-import EditVideo from "./screens/EditVideo.jsx"
 
+import Blogs from "./screens/blog/Blogs.jsx"
+import AddPost from './screens/blog/AddPost.jsx';
+import EditPost from './screens/blog/EditPost.jsx';
+import Articles from './screens/article/Articles.jsx';
+import AddArticle from './screens/article/AddArticle.jsx'
+import EditArticle from './screens/article/EditArticle.jsx';
+import Videos from './screens/video/Videos.jsx';
+import AddVideo from "./screens/video/AddVideo.jsx"
+import EditVideo from './screens/video/EditVideo.jsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />
+    element: <Blogs />
   },
   {
     path: "/add-post",
@@ -53,8 +53,6 @@ const router = createBrowserRouter([
     element: <EditVideo />
   },
 ])
-
-
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

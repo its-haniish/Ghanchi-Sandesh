@@ -7,7 +7,7 @@ const Page = ({ params }) => {
     return (
         <>
             <Navbar />
-            <main className='px-3 mb-6'>
+            <main className='px-3 mb-6 mt-[46px]'>
                 <iframe src={`/pdfs/${decodeURIComponent(params.pdf)}.pdf`} width="336px" height="550px"></iframe>
             </main>
             <FooterMenu />

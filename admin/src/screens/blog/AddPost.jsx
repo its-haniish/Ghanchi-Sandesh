@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import Navbar from '../components/Navbar';
+import Navbar from '../../components/Navbar.jsx';
 import { RotatingLines } from 'react-loader-spinner';
-import ImageAddComp from "../components/ImageAddComp.jsx"
+import ImageAddComp from "../../components/ImageAddComp.jsx"
 import { useNavigate } from 'react-router-dom';
 
 const AddPost = () => {
@@ -100,6 +100,19 @@ const AddPost = () => {
                         className='bg-gray-100 w-[80%] text-center h-fit px-2 py-1 text-lg mt-1 rounded-md'
 
                         name='location'
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+
+                <div className='flex flex-col justify-start items-center w-full mt-2 h-fit'>
+                    <label className='font-semibold'>AUTHOR:</label>
+                    <input
+                        type="text"
+                        placeholder='Enter location here...'
+                        className='bg-gray-100 w-[80%] text-center h-fit px-2 py-1 text-lg mt-1 rounded-md'
+
+                        name='author'
                         onChange={handleChange}
                         required
                     />

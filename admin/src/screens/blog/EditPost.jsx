@@ -1,8 +1,8 @@
 // EditPost.jsx
 import React, { useEffect, useState } from 'react';
-import Navbar from '../components/Navbar';
+import Navbar from '../../components/Navbar.jsx';
 import { RotatingLines } from 'react-loader-spinner';
-import ImageAddComp from "../components/ImageAddComp.jsx"
+import ImageAddComp from "../../components/ImageAddComp.jsx"
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
@@ -16,7 +16,8 @@ const EditPost = () => {
         featured: '',
         news: '',
         location: '',
-        slug: ''
+        slug: '',
+        author: ''
     });
     const navigate = useNavigate();
 
@@ -125,6 +126,19 @@ const EditPost = () => {
                         className='bg-gray-100 w-[80%] text-center h-fit px-2 py-1 text-lg mt-1 rounded-md'
                         value={formData.location}
                         name='location'
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+
+                <div className='flex flex-col justify-start items-center w-full mt-2 h-fit'>
+                    <label className='font-semibold'>AUTHOR:</label>
+                    <input
+                        type="text"
+                        placeholder='Enter location here...'
+                        className='bg-gray-100 w-[80%] text-center h-fit px-2 py-1 text-lg mt-1 rounded-md'
+                        value={formData.author}
+                        name='author'
                         onChange={handleChange}
                         required
                     />

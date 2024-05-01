@@ -8,8 +8,6 @@ import { IoClose } from "react-icons/io5";
 
 const Navbar = () => {
     const [showMenu, setShowMenu] = useState(false);
-    const [navbarHeight, setNavbarHeight] = useState(0);
-    const navbarRef = useRef()
 
     const openMenu = () => {
         setShowMenu(prev => !prev)
@@ -19,17 +17,9 @@ const Navbar = () => {
         setShowMenu(false)
     }
 
-    useEffect(() => {
-        // Calculate the height of the navbar
-        if (navbarRef.current) {
-            const height = navbarRef.current.offsetHeight;
-            setNavbarHeight(height);
-        }
-    }, []);
-
     return (
         <header>
-            <nav ref={navbarRef} className='w-screen h-[7vh] bg-[#e51a4b] px-2 py-0 overflow-visible'>
+            <nav className='fixed top-0 left-0 right-0 w-screen h-[7vh] bg-[#e51a4b] px-2 py-0 overflow-visible'>
 
                 <div className='w-full h-full flex justify-between items-center'>
 
@@ -45,7 +35,7 @@ const Navbar = () => {
                         </Link>
                     </div>
 
-                    <button className='flex justify-center items-center w-fit h-full ml-2'>
+                    <button className='flex justify-center items-center w-fit h-full ml-2 duration-700 ease-in-out transition-all'>
                         {
                             !showMenu ?
                                 <FiMenu color='white' size={42} onClick={openMenu} />
@@ -55,7 +45,7 @@ const Navbar = () => {
 
                 </div >
             </nav >
-            {showMenu && <Menu closeMenu={closeMenu} navbarHeight={navbarHeight} />}
+            <Menu closeMenu={closeMenu} showMenu={showMenu} />
         </header>
     )
 }

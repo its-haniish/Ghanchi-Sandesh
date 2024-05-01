@@ -13,7 +13,7 @@ const VideoPreview = ({ video }) => {
                 src={embeddedLink}
                 width="336"
                 height="189"
-                frameborder="0"
+                // frameborder="0"
                 className='rounded-xl z-[100000]'
                 aria-controls
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

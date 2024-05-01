@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import Navbar from '../components/Navbar';
-import VideoItem from '../components/VideoItem.jsx';
+import Navbar from '../../components/Navbar';
+import ArticleItem from '../../components/ArticleItem';
 import { RotatingLines } from "react-loader-spinner"
 
-const Videos = () => {
-    const [videos, setVideos] = useState([]);
+const Articles = () => {
+    const [articles, setArticles] = useState([]);
     const [loading, setLoading] = useState(false)
 
-    const getAllVideos = async () => {
+    const getAllArticles = async () => {
         setLoading(true)
-        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/get-all-videos`, {
+        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/get-all-articles`, {
             method: 'POST',
             headers: { "Content-Type": "application/json" }
         });
@@ -20,12 +20,12 @@ const Videos = () => {
             return alert(result.msg)
         }
         setLoading(false)
-        setVideos(result.response.reverse())
+        setArticles(result.response.reverse())
     }
 
 
     useEffect(() => {
-        getAllVideos()
+        getAllArticles()
     }, [])
 
     return (
@@ -33,11 +33,10 @@ const Videos = () => {
             <Navbar
                 blogTo="/"
                 blogTitle="All Posts"
-                articleTo="/articles"
-                articleTitle="All Articles"
-                videoTo="/add-video"
-                videoTitle="Add Video"
-            />
+                articleTo="/add-article"
+                articleTitle="Add Article"
+                videoTo="/videos"
+                videoTitle="All Videos" />
             {
                 loading ?
                     <div className='flex flex-col gap-3 justify-center items-center w-full h-full mt-[20vh]'>
@@ -47,12 +46,12 @@ const Videos = () => {
                     :
                     <main className='w-full mb-10'>
 
-                        <h2 className='text-center text-bold text-xl font-["Tilt Neon"] mt-3'>Total Videos - {videos?.length}</h2>
+                        <h2 className='text-center text-bold text-xl font-["Tilt Neon"] mt-3'>Total Articles - {articles?.length}</h2>
                         {
-                            videos?.map((video, index) => {
-                                const { _id, link, description } = video;
+                            articles?.map((article, index) => {
+                                const { _id, slug } = article;
                                 return (
-                                    <VideoItem key={_id} index={index} link={link} description={description} setVideos={setVideos} />
+                                    <ArticleItem key={_id} index={index} slug={slug} setArticles={setArticles} />
                                 )
                             })
                         }
@@ -61,4 +60,4 @@ const Videos = () => {
     )
 }
 
-export default Videos
+export default Articles

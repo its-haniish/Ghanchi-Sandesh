@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import Navbar from '../components/Navbar';
-import PostItem from '../components/PostItem';
+import Navbar from '../../components/Navbar';
+import PostItem from '../../components/PostItem';
 import { RotatingLines } from "react-loader-spinner"
 
-const App = () => {
+const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(false)
 
@@ -61,4 +61,4 @@ const App = () => {
   )
 }
 
-export default App
+export default Blogs

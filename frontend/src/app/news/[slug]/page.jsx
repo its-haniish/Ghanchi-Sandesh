@@ -52,6 +52,32 @@ const Page = ({ params }) => {
         }
     };
 
+    function getTimePassed(utcTimestamp) {
+        const currentTime = new Date();
+        const providedTime = new Date(utcTimestamp);
+
+        const timeDifference = currentTime - providedTime;
+        const secondsDifference = Math.floor(timeDifference / 1000);
+        const minutesDifference = Math.floor(secondsDifference / 60);
+        const hoursDifference = Math.floor(minutesDifference / 60);
+        const daysDifference = Math.floor(hoursDifference / 24);
+        const monthsDifference = Math.floor(daysDifference / 30);
+        const yearsDifference = Math.floor(monthsDifference / 12);
+
+        if (yearsDifference > 0) {
+            return yearsDifference === 1 ? "1 year ago" : `${yearsDifference} years ago`;
+        } else if (monthsDifference > 0) {
+            return monthsDifference === 1 ? "1 month ago" : `${monthsDifference} months ago`;
+        } else if (daysDifference > 0) {
+            return daysDifference === 1 ? "1 day ago" : `${daysDifference} days ago`;
+        } else if (hoursDifference > 0) {
+            return hoursDifference === 1 ? "1 hour ago" : `${hoursDifference} hours ago`;
+        } else if (minutesDifference > 0) {
+            return minutesDifference === 1 ? "1 minute ago" : `${minutesDifference} minutes ago`;
+        } else {
+            return secondsDifference === 1 ? "1 second ago" : `${secondsDifference} seconds ago`;
+        }
+    }
 
     useEffect(() => {
         getPostInfo()
@@ -61,15 +87,18 @@ const Page = ({ params }) => {
             <Navbar />
             {
                 loading ?
-                    <div className='flex flex-col gap-3 justify-center items-center w-full h-full mt-[-10vh]'>
+                    <div className='flex flex-col gap-3 justify-center items-center w-full h-full mt-[-10vh] '>
                         <RotatingLines width='100' strokeColor='#e51a4b' />
                         <p className='text-2xl text-[#e51a4b] font-bold'>Please wait...</p>
                     </div> :
-                    <main className='pt-2 px-5 w-[100vw] overflow-y-scroll mb-24'>
+                    <main className='pt-2 px-5 w-[100vw] overflow-y-scroll mb-14 mt-[46px]'>
 
-                        <div className='flex justify-start items-center gap-1 h-[16%]'>
-                            <FaLocationDot color='#e51a4b' size={14} />
-                            <span className='text-[#e51a4b] text-sm font-bold'>{data?.location}</span>
+                        <div className='w-full flex justify-between items-center mb-1'>
+                            <div className='flex justify-start items-center gap-1 h-[12%]'>
+                                <FaLocationDot color='#e51a4b' size={14} />
+                                <span className='text-[#e51a4b] text-sm font-bold'>{data?.location}</span>
+                            </div>
+                            <p className='text-[#e51a4b] text-sm font-semibold'>By <span className='font-bold'>{data?.author}</span>, {getTimePassed(data?.createdAt)}</p>
                         </div>
 
                         <h2 className='h-[16%] font-extrabold text-l text-[blue] underline text-wrap text-justify'>

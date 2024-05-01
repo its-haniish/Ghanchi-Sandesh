@@ -51,7 +51,6 @@ const getArticle = async (req, res) => {
     const { slug } = req.body;
     try {
         let response = await Articles.findOne({ slug })
-        console.log(slug);
         if (response) {
             res.status(200).json({ response });
         } else {

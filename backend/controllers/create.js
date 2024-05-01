@@ -4,7 +4,6 @@ const Videos = require("../models/Videos.js")
 
 const createBlog = async (req, res) => {
     try {
-        console.log("Creating post...");
         const response = await Blogs.create({ ...req.body })
         if (response) {
             console.log("Created post : ", response);
@@ -21,7 +20,6 @@ const createBlog = async (req, res) => {
 
 const createArticle = async (req, res) => {
     try {
-        console.log("Creating article...");
         const response = await Articles.create({ ...req.body })
         if (response) {
             console.log("Created article : ", response.slug);
@@ -37,7 +35,6 @@ const createArticle = async (req, res) => {
 
 const createVideo = async (req, res) => {
     try {
-        console.log("Creating video...");
         const response = await Videos.create({ ...req.body })
         if (response) {
             console.log("Created video : ", response.link);

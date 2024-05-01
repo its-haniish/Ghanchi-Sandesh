@@ -51,6 +51,33 @@ const Page = ({ params }) => {
         }
     };
 
+    function getTimePassed(utcTimestamp) {
+        const currentTime = new Date();
+        const providedTime = new Date(utcTimestamp);
+
+        const timeDifference = currentTime - providedTime;
+        const secondsDifference = Math.floor(timeDifference / 1000);
+        const minutesDifference = Math.floor(secondsDifference / 60);
+        const hoursDifference = Math.floor(minutesDifference / 60);
+        const daysDifference = Math.floor(hoursDifference / 24);
+        const monthsDifference = Math.floor(daysDifference / 30);
+        const yearsDifference = Math.floor(monthsDifference / 12);
+
+        if (yearsDifference > 0) {
+            return yearsDifference === 1 ? "1 year ago" : `${yearsDifference} years ago`;
+        } else if (monthsDifference > 0) {
+            return monthsDifference === 1 ? "1 month ago" : `${monthsDifference} months ago`;
+        } else if (daysDifference > 0) {
+            return daysDifference === 1 ? "1 day ago" : `${daysDifference} days ago`;
+        } else if (hoursDifference > 0) {
+            return hoursDifference === 1 ? "1 hour ago" : `${hoursDifference} hours ago`;
+        } else if (minutesDifference > 0) {
+            return minutesDifference === 1 ? "1 minute ago" : `${minutesDifference} minutes ago`;
+        } else {
+            return secondsDifference === 1 ? "1 second ago" : `${secondsDifference} seconds ago`;
+        }
+    }
+
 
     useEffect(() => {
         getArticleInfo()
@@ -64,7 +91,7 @@ const Page = ({ params }) => {
                         <RotatingLines width='100' strokeColor='#e51a4b' />
                         <p className='text-2xl text-[#e51a4b] font-bold'>Please wait...</p>
                     </div> :
-                    <main className='pt-2 px-5 w-[100vw] overflow-y-scroll mb-24'>
+                    <main className='pt-2 px-5 w-[100vw] overflow-y-scroll mb-14 mt-[46px]'>
 
                         <h2 className='h-[16%] font-extrabold text-l text-[blue] underline text-wrap text-justify'>
                             {data?.title}
@@ -78,12 +105,16 @@ const Page = ({ params }) => {
                             {data?.article}
                         </p>
 
-                        <div className='flex justify-center items-center w-full mt-3'>
-                            <button className='bg-[#e51a4b]  py-[2px] px-6 rounded mb-9 flex justify-center items-center gap-1'
+                        <div className='w-full flex flex-row justify-between items-center mt-6 mb-9'>
+
+                            <button className='bg-[#e51a4b]  py-[2px] px-6 rounded flex justify-center items-center gap-1 ml-2'
                                 onClick={handleShare}>
                                 <IoShareSocial color='white' />
                                 <span className='text-white text-l font-bold '>शेयर</span>
                             </button>
+
+                            <p className='text-[#e51a4b] py-[2px] text-sm font-semibold bg-none px-6 rounded text-right w-fit'>By <span className='font-bold'>{data?.author}</span>, {getTimePassed(data?.createdAt)}</p>
+
                         </div>
 
                     </main>}

@@ -33,7 +33,7 @@ const Page = () => {
         <>
             <Navbar />
 
-            <main className='w-screen h-fit flex flex-col justify-start items-center px-2 mb-24'>
+            <main className='w-screen h-fit flex flex-col justify-start items-center px-2 mb-14 mt-[46px]'>
                 {/* dynamic feed wrapper  */}
                 <div className='w-full'>
                     {/* top new heading */}

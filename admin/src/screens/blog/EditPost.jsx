@@ -71,7 +71,7 @@ const EditPost = () => {
             <Navbar
                 blogTo="/"
                 blogTitle="All Posts"
-                articleTo="/article"
+                articleTo="/articles"
                 articleTitle="All Articles"
                 videoTo="/videos"
                 videoTitle="All Videos" />

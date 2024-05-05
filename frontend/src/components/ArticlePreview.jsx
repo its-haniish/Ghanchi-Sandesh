@@ -9,6 +9,19 @@ const ArticlePreview = ({ post }) => {
 
     const truncatedText = article.substring(0, 110);
 
+    const getExtractedImageUrl = (imageUrl) => {
+        // Extracting the ID from the URL
+        const idStartIndex = imageUrl.indexOf('/d/') + 3;
+        const idEndIndex = imageUrl.indexOf('/view');
+        const fileId = imageUrl.substring(idStartIndex, idEndIndex);
+
+        // Constructing the thumbnail URL
+        const thumbnailUrl = `https://drive.google.com/thumbnail?id=${fileId}`;
+
+        return thumbnailUrl;
+    }
+
+    
     return (
         <Link href={`/articles/${slug}`} className='bg-gray-100 rounded-md py-1 px-2 w-full h-fit' >
 
@@ -22,7 +35,7 @@ const ArticlePreview = ({ post }) => {
                     {truncatedText} <span className='text-left font-semibold text-[#e51a4b] text-l'>आगे पढ़े...</span>
                 </p>
 
-                <img src={featured || "/Ghanchi Sandesh.jpg"} alt={featured || ''} className='w-[200px] h-[90px] rounded-md' />
+                <img src={getExtractedImageUrl(featured)} alt={getExtractedImageUrl(featured)} className='w-[200px] h-[90px] rounded-md aspect-video' />
 
             </div>
         </Link>

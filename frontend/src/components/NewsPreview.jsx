@@ -38,6 +38,18 @@ const NewsPreview = ({ post }) => {
 
     const time = getTimePassed(createdAt)
 
+    const getExtractedImageUrl = (imageUrl) => {
+        // Extracting the ID from the URL
+        const idStartIndex = imageUrl.indexOf('/d/') + 3;
+        const idEndIndex = imageUrl.indexOf('/view');
+        const fileId = imageUrl.substring(idStartIndex, idEndIndex);
+
+        // Constructing the thumbnail URL
+        const thumbnailUrl = `https://drive.google.com/thumbnail?id=${fileId}`;
+
+        return thumbnailUrl;
+    }
+
 
     return (
         <Link href={`/news/${slug}`} className='bg-gray-100 rounded-md py-1 px-2 w-full h-fit' >
@@ -49,7 +61,7 @@ const NewsPreview = ({ post }) => {
                 <p className='text-[#e51a4b] text-sm font-semibold'>प्रेषक: <span className='font-bold'>{author}</span>, {time}</p>
             </div>
 
-            <img src={featured || "/Ghanchi Sandesh.jpg"} alt={featured || ""} className='w-full aspect-video rounded-md shadow' />
+            <img src={featured ? getExtractedImageUrl(featured) : "/Ghanchi Sandesh.jpg"} alt={featured ? getExtractedImageUrl(featured) : "Ghanchi Sandesh featured"} className='w-full aspect-video rounded-md shadow' />
 
 
             <h2 className='h-fit w-full mt-1 font-bold text-lg text-[blue] text-left underline'>

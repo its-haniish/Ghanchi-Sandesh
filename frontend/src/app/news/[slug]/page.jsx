@@ -79,6 +79,18 @@ const Page = ({ params }) => {
         }
     }
 
+    const getExtractedImageUrl = (imageUrl) => {
+        // Extracting the ID from the URL
+        const idStartIndex = imageUrl.indexOf('/d/') + 3;
+        const idEndIndex = imageUrl.indexOf('/view');
+        const fileId = imageUrl.substring(idStartIndex, idEndIndex);
+
+        // Constructing the thumbnail URL
+        const thumbnailUrl = `https://drive.google.com/thumbnail?id=${fileId}`;
+
+        return thumbnailUrl;
+    }
+
     useEffect(() => {
         getPostInfo()
     }, [])
@@ -106,7 +118,7 @@ const Page = ({ params }) => {
                         </h1>
 
                         <div className='w-full flex justify-center items-center mt-3'>
-                            <img src={data?.featured || "/Ghanchi Sandesh.jpg"} alt={data?.featured} className='w-full rounded-lg' />
+                            <img src={data?.featured !== undefined ? getExtractedImageUrl(data?.featured) : "/Ghanchi Sandesh.jpg"} alt={data?.featured || "Ghanchi Sandesh featured images"} className='w-full rounded-lg aspect-video' />
                         </div>
 
                         <p className='w-full mt-1 text-wrap whitespace-normal text-lg text-center font-normal'>
@@ -115,7 +127,10 @@ const Page = ({ params }) => {
 
                         <div className='mt-2 w-full flex flex-wrap justify-center items-start gap-1'>
                             {
-                                data?.images?.map((image, index) => (<img key={image + index} src={image || "/Ghanchi Sandesh.jpg"} alt={image || ""} className='w-[150px] rounded-lg' />))
+                                data?.images?.map((image, index) => {
+                                    const extractedId = getExtractedImageUrl(image);
+                                    return (<img key={extractedId + index} src={extractedId || "/Ghanchi Sandesh.jpg"} alt={extractedId || "Ghanchi Sandesh Images"} className='w-[150px] rounded-lg aspect-video' />)
+                                })
                             }
                         </div>
 

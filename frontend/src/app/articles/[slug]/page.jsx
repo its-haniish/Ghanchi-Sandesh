@@ -110,7 +110,7 @@ const Page = ({ params }) => {
                         </h1>
 
                         <div className='w-full flex justify-center items-center mt-3'>
-                            <img src={data?.featured : "/Ghanchi Sandesh.jpg"} alt={data?.featured} className='w-full rounded-lg aspect-video' />
+                            <img src={data?.featured || "/Ghanchi Sandesh.jpg"} alt={data?.featured} className='w-full rounded-lg aspect-video' />
                         </div>
 
                         <p className='w-full mt-1 text-wrap whitespace-normal text-lg text-center font-normal'>

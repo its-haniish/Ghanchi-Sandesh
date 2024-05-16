@@ -19,7 +19,6 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.0.1",
-    "eslint": "^8",
     "eslint-config-next": "14.1.4",
     "file-loader": "^6.2.0",
     "postcss": "^8",

@@ -3,7 +3,7 @@ import FooterMenu from '@/components/FooterMenu'
 import Navbar from '@/components/Navbar'
 import React from 'react'
 
-const page = () => {
+const Page = () => {
     return (
         <>
             <Navbar />
@@ -11,20 +11,20 @@ const page = () => {
                 <h1 className='text-2xl font-Nunito font-semibold underline' >Privacy Policy</h1>
 
                 <p className='w-[90%] text-wrap mt-2 text-justify'>
-                    This privacy policy applies to the <strong>“Ghanchi Sandesh”</strong> app (hereby referred to as "Application") for mobile devices that was created by <b>Jayesh Ghanchi & Hanish Kumar</b> (hereby referred to as "Service Provider") as a Free service. This service is intended for use "AS IS".
+                    This privacy policy applies to the &ldquo;Ghanchi Sandesh&rdquo; app (&apos;hereby referred to as &quot;Application&quot;&apos;) for mobile devices that was created by &ldquo;Jayesh Ghanchi & Hanish Kumar&rdquo; (&apos;hereby referred to as &quot;Service Provider&quot;&apos;) as a Free service. This service is intended for use &quot;AS IS&quot;.
                 </p>
 
                 <h2 className='text-xl font-Nunito font-semibold mt-2'>Information Collection and Use</h2>
                 <p className='w-[90%] text-wrap mt-2 text-justify'>
                     The Application collects information when you download and use it. This information may include information such as
                     <br />
-                    <strong>Your device's Internet Protocol address (e.g. IP address)</strong> <br />
+                    <strong>Your device&apos;s Internet Protocol address (e.g. IP address)</strong> <br />
                     The pages of the Application that you visit, the time and date of your visit, the time spent on those pages
                     The time spent on the Application.
                     The operating system you use on your mobile device.
                     <br />
                     <i>
-                        The Application collects your device's location, which helps the Service Provider determine your approximate geographical location and make use of in below ways:</i>
+                        The Application collects your device&apos;s location, which helps the Service Provider determine your approximate geographical location and make use of in below ways:</i>
                     <br />
                     <strong>Geolocation Services:</strong> <br />
                     The Service Provider utilizes location data to provide features such as personalized content, relevant recommendations, and location-based services. <br />
@@ -36,7 +36,6 @@ const page = () => {
                     <i>The Service Provider may use the information you provided to contact you from time to time to provide you with important information, required notices and marketing promotions.</i> <br />
 
                 </p>
-
 
 
                 <h2 className='text-xl font-Nunito font-semibold mt-2'>Third Party Access</h2>
@@ -54,13 +53,12 @@ const page = () => {
                     with their trusted services providers who work on their behalf, do not have an independent use of the information we disclose to them, and have agreed to adhere to the rules set forth in this privacy statement.
                 </p>
 
-
                 <h2 className='text-xl font-Nunito font-semibold mt-2'>Opt-Out Rights</h2>
                 <p className='w-[90%] text-wrap mt-2 text-justify'>You can stop all collection of information by the Application easily by uninstalling it. You may use the standard uninstall processes as may be available as part of your mobile device or via the mobile application marketplace or network.</p>
 
 
                 <h2 className='text-xl font-Nunito font-semibold mt-2'>Data Retention Policy</h2>
-                <p className='w-[90%] text-wrap mt-2 text-justify'>The Service Provider will retain User Provided data for as long as you use the Application and for a reasonable time thereafter. If you'd like them to delete User Provided Data that you have provided via the Application, please contact them at shreeghanchisandesh@gmail.com and they will respond in a reasonable time.
+                <p className='w-[90%] text-wrap mt-2 text-justify'>The Service Provider will retain User Provided data for as long as you use the Application and for a reasonable time thereafter. If you&apos;d like them to delete User Provided Data that you have provided via the Application, please contact them at shreeghanchisandesh@gmail.com and they will respond in a reasonable time.
                     <br />
                     The Application does not address anyone under the age of 13. The Service Provider does not knowingly collect personally identifiable information from children under 13 years of age. In the case the Service Provider discover that a child under 13 has provided personal information, the Service Provider will immediately delete this from their servers. If you are a parent or guardian and you are aware that your child has provided us with personal information, please contact the Service Provider (shreeghanchisandesh@gmail.com) so that they will be able to take the necessary actions.</p>
 
@@ -81,4 +79,4 @@ const page = () => {
     )
 }
 
-export default page
+export default Page

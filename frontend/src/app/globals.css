@@ -33,3 +33,9 @@ body{
   background: linear-gradient(to top, rgba(255, 0, 0, 0.76), rgba(255, 0, 0, 0.418));
 }
 
+.about-heading{
+  background: linear-gradient(to right, red, orange);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+

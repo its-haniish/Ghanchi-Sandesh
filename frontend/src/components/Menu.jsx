@@ -46,8 +46,8 @@ const Menu = ({ closeMenu, showMenu }) => {
         <section ref={menuRef} className={`${showMenu ? 'opacity-100 transition-opacity ease-in-out duration-500' : 'hidden opacity-0 transition-opacity ease-in-out duration-500'} absolute top-[3.3rem] left-0 w-full h-fit menu-bar-style shadow shadow-red-600`}>
             <div className='w-full flex flex-col justify-start items-center gap-3 mt-3'>
                 <Link href="/" onClick={closeMenu} className='text-center text-white text-xl font-bold'>Home</Link>
-                <Link href="/" onClick={closeMenu} className='text-center text-white text-xl font-bold'>About Us</Link>
-                <Link href="/" onClick={closeMenu} className='text-center text-white text-xl font-bold'>Contact Us</Link>
+                <Link href="/about" onClick={closeMenu} className='text-center text-white text-xl font-bold'>About Us</Link>
+                <Link href="/contact" onClick={closeMenu} className='text-center text-white text-xl font-bold'>Contact Us</Link>
             </div>
 
             <ul className='w-full flex justify-center item gap-5 mt-12 mb-4'>

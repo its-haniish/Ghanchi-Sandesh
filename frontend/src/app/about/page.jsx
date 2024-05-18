@@ -16,7 +16,7 @@ const page = () => {
                     <img src="/dinesh.jpg" alt="dinesh" className='aspect-auto w-24 h-fit mb-1 shadow-lg rounded-sm' />
                     <p className='text-sm font-Nunito font-normal'>दिनेश चौहान
                     </p>
-                    <p className='text-sm font-Nunito font-normal'>संपादक - श्री धाँची-संदेश</p>
+                    <p className='text-sm font-Nunito font-normal'>संपादक - श्री घाँची-संदेश</p>
                 </div>
             </main>
             <FooterMenu />

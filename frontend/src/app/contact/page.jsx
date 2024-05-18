@@ -15,7 +15,7 @@ const page = () => {
                 <h1 className='text-black underline text-2xl font-Nunito font-semibold about-heading'>CONTACT US</h1>
                 <div className='flex justify-center items-center gap-1 mt-2 flex-wrap px-2 bg-slate-200 w-screen shadow shadow-gray-300 py-1'>
                     <SiGoogleforms size={30} color='orange' />
-                    <p className='text-wrap font-medium font-Nunito'>श्री धाँची संदेश में न्यूत देने के लिए फॉर्म भरें।
+                    <p className='text-wrap font-medium font-Nunito'>श्री घाँची-संदेश में न्यूज़ देने के लिए फॉर्म भरें।
                     </p>
                 </div>
                 <ul className='ml-7 w-screen flex flex-col mt-4 gap-4'>
@@ -25,15 +25,15 @@ const page = () => {
                     </li>
                     <li className='flex justify-start items-center w-fit gap-2'>
                         <IoLogoWhatsapp size={25} color='black' />
-                        <p className='text-wrap text-sm font-medium font-Nunito'>9636941272</p>
+                        <a href='https://wa.me/9636941272' target='_blank' className='text-wrap text-sm font-medium font-Nunito'>9636941272</a>
                     </li>
                     <li className='flex justify-start items-center w-fit gap-2'>
                         <FaPhoneVolume size={24} color='black' />
-                        <p className='text-wrap text-sm font-medium font-Nunito' >9460072296</p>
+                        <a href='tel:9460072276' target='_blank' className='text-wrap text-sm font-medium font-Nunito' >9460072276</a>
                     </li>
                     <li className='flex justify-start items-center w-fit gap-2'>
                         <MdOutlineMail size={25} color='black' />
-                        <p className='text-wrap text-sm font-medium font-Nunito'>shreeghanchisandesh@gmail.com </p>
+                        <a href='mailto:shreeghanchisandesh@gmail.com' className='text-wrap text-sm font-medium font-Nunito'>shreeghanchisandesh@gmail.com </a>
                     </li>
                 </ul>
 

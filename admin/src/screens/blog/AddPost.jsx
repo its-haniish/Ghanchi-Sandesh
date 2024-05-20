@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 const AddPost = () => {
     const [loading, setLoading] = useState(false);
-    const [images, setImages] = useState({})
+    const [images, setImages] = useState([])
     const [formData, setFormData] = useState({
         title: '',
         featured: '',
@@ -15,33 +15,63 @@ const AddPost = () => {
     });
     const navigate = useNavigate()
 
+    const readFileAsUrl = (file) => {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                resolve(reader.result);
+            };
+            reader.onerror = reject;
+            reader.readAsDataURL(file);
+        });
+    };
+
     const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setLoading(true)
-        let imagesArray = Object.values(images);
-        const filteredImagesArray = imagesArray.filter(item => item !== "");
+
+        // Filter out empty images
+        const filteredImages = images.filter(image => image !== "");
+
+        // Create data object
         const data = {
-            ...formData, images: filteredImagesArray
-        }
+            ...formData,
+            images: filteredImages
+        };
+
+        // Start loading
+        setLoading(true);
+
         try {
-            let res = await fetch(`${process.env.REACT_APP_BASE_URL}/create-post`, {
+            // Send POST request
+            const res = await fetch(`${process.env.REACT_APP_BASE_URL}/create-post`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(data)
-            })
-            let result = await res.json()
-            setLoading(false)
-            alert(result?.msg)
-            return navigate("/")
-        } catch (error) {
-            setLoading(false)
-            alert(error)
-            return navigate("/")
-        }
+            });
 
+            // Parse response
+            const result = await res.json();
+
+            // Stop loading
+            setLoading(false);
+
+            // Show alert message
+            alert(result?.msg);
+            if (result?.msg === "Post created successfully.") navigate("/");
+        } catch (error) {
+            // Stop loading
+            setLoading(false);
+
+            // Show error message
+            alert(error);
+
+            // Navigate to home page
+            // navigate("/");
+        }
     };
+
 
     return (
         <>
@@ -82,12 +112,22 @@ const AddPost = () => {
 
                 <div className='flex flex-col justify-start items-center w-full mt-2 h-fit'>
                     <label className='font-semibold'>FEATURED IMAGE:</label>
+                    <div className='w-full flex justify-center items-center'>
+                        {formData.featured !== "" &&
+                            <img src={formData.featured} alt="Image will show here." className='w-[50%] rounded-lg aspect-video' />
+                        }
+
+                    </div>
                     <input
-                        type="text"
+                        type="file"
                         placeholder='Enter link here...'
                         className='bg-gray-100 w-[80%] text-center h-fit px-2 py-1 text-lg mt-1 rounded-md'
                         name='featured'
-                        onChange={handleChange}
+                        accept='image/*'
+                        onChange={async (e) => {
+                            const base64String = await readFileAsUrl(e.target.files[0]);
+                            setFormData({ ...formData, featured: base64String });
+                        }}
                         required
                     />
                 </div>
@@ -131,7 +171,7 @@ const AddPost = () => {
                     />
                 </div>
 
-                <ImageAddComp images={images} setImages={setImages} />
+                <ImageAddComp images={images} setImages={setImages} readFileAsUrl={readFileAsUrl} />
 
                 <button type='submit' className="mt-1 bg-[#e51a4b] text-white text-lg py-1 px-4 rounded active:bg-slate-600 w-28 h-10 flex justify-center items-center font-bold mb-6">
                     {!loading ? 'POST' : <RotatingLines height="30" width="30" strokeColor="white" />}

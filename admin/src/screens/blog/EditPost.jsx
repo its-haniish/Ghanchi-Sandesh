@@ -23,6 +23,17 @@ const EditPost = () => {
 
     const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
+    const readFileAsUrl = (file) => {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                resolve(reader.result);
+            };
+            reader.onerror = reject;
+            reader.readAsDataURL(file);
+        });
+    }
+
     const getPostInfo = async () => {
         let res = await fetch(`${process.env.REACT_APP_BASE_URL}/get-post`, {
             method: "POST",
@@ -36,11 +47,19 @@ const EditPost = () => {
             return navigate("/");
         }
         setLoading(false);
-        setImages(result.response?.images)
-        return setFormData({
-            ...result.response
+        setImages(result.response?.images);
+
+        // Set formData including the fetched data
+        setFormData({
+            title: result.response.title,
+            featured: result.response.featured, // Include the value of the featured image
+            news: result.response.news,
+            location: result.response.location,
+            slug: result.response.slug,
+            author: result.response.author
         });
     };
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -107,16 +126,24 @@ const EditPost = () => {
 
                 <div className='flex flex-col justify-start items-center w-full mt-2 h-fit'>
                     <label className='font-semibold'>FEATURED IMAGE:</label>
+                    <div className='w-screen flex justify-center items-center'>
+                        {formData.featured && (
+                            <img src={formData.featured} alt="Featured Image" className="w-[50%] rounded-lg aspect-video" />
+                        )}
+                    </div>
                     <input
-                        type="text"
+                        type="file"
                         placeholder='Enter link here...'
                         className='bg-gray-100 w-[80%] text-center h-fit px-2 py-1 text-lg mt-1 rounded-md'
                         name='featured'
-                        onChange={handleChange}
-                        value={formData.featured}
-                        required
+                        accept='image/*'
+                        onChange={async (e) => {
+                            const base64String = await readFileAsUrl(e.target.files[0]);
+                            setFormData({ ...formData, featured: base64String });
+                        }}
                     />
                 </div>
+
 
                 <div className='flex flex-col justify-start items-center w-full mt-2 h-fit'>
                     <label className='font-semibold'>NEWS LOCATION:</label>
@@ -157,7 +184,7 @@ const EditPost = () => {
                     />
                 </div>
 
-                <ImageAddComp images={images} setImages={setImages} />
+                <ImageAddComp images={images} setImages={setImages} readFileAsUrl={readFileAsUrl} />
 
                 <button type='submit' className="mt-1 bg-[#e51a4b] text-white text-lg py-1 px-4 rounded active:bg-slate-600 w-28 h-10 flex justify-center items-center font-bold mb-6">
                     {!loading ? 'UPDATE' : <RotatingLines height="30" width="30" strokeColor="white" />}

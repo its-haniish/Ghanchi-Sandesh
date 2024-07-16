@@ -10,14 +10,19 @@ const Blogs = () => {
     const [blogs, setBlogs] = useState([]);
     const [isError, setIsError] = useState(false);
     const [refreshing, setRefreshing] = useState(false);
+    const [page, setPage] = useState(1);
+    const [isLoadingMore, setIsLoadingMore] = useState(false);
+    const [isAllLoaded, setIsAllLoaded] = useState(false);
 
-    const fetchBlogsFromApi = async () => {
+
+    const fetchBlogsFromApi = async (page) => {
         try {
-            const response = await fetch('https://ghanchisandesh.live/get-gs-blog-cards', {
+            const response = await fetch('https://ghanchisandesh.live/get-blog-cards-by-pages', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
+                body: JSON.stringify({ page }),
             });
             const data = await response.json();
             if (data?.msg) {
@@ -38,19 +43,21 @@ const Blogs = () => {
         try {
             const cachedBlogs = await AsyncStorage.getItem('blogs');
             if (cachedBlogs !== null) {
-                setBlogs(JSON.parse(cachedBlogs).reverse());
+                setBlogs(JSON.parse(cachedBlogs));
                 setLoading(false);
                 // Fetch fresh data in background
                 const freshBlogs = await fetchBlogsFromApi();
                 if (freshBlogs) {
-                    setBlogs(freshBlogs.reverse());
+                    setBlogs(freshBlogs);
+                    setIsAllLoaded(false)
                     await AsyncStorage.setItem('blogs', JSON.stringify(freshBlogs));
                 }
             } else {
                 // No cached data, fetch from API and show loader
-                const freshBlogs = await fetchBlogsFromApi();
+                const freshBlogs = await fetchBlogsFromApi(1);
                 if (freshBlogs) {
-                    setBlogs(freshBlogs.reverse());
+                    setIsAllLoaded(false)
+                    setBlogs(freshBlogs);
                     await AsyncStorage.setItem('blogs', JSON.stringify(freshBlogs));
                 }
             }
@@ -61,15 +68,56 @@ const Blogs = () => {
             setLoading(false);
         }
     };
+    const loadMoreBlogs = async () => {
+        if (isLoadingMore) return;
+        if (loading) return;
+        if (refreshing) return;
+
+        setIsLoadingMore(true);
+        const nextPage = page + 1;
+        const moreBlogs = await fetchBlogsFromApi(nextPage);
+        if (moreBlogs) {
+            const updatedBlogs = [...blogs, ...moreBlogs];
+            await AsyncStorage.setItem('blogs', JSON.stringify(updatedBlogs));
+            console.log('More blogs loaded:', moreBlogs.length);
+            setBlogs(updatedBlogs);
+            if (moreBlogs.length === 4) {
+                setPage(nextPage);
+                setIsLoadingMore(false);
+                return;
+            } else {
+                setIsAllLoaded(true);
+                setIsLoadingMore(false);
+                return;
+            }
+        }
+        setIsLoadingMore(false);
+    };
+
+
+
 
     const handleRefresh = async () => {
         setRefreshing(true);
-        const freshBlogs = await fetchBlogsFromApi();
+        const freshBlogs = await fetchBlogsFromApi(1);
         if (freshBlogs) {
-            setBlogs(freshBlogs.reverse());
+            setPage(1);
+            setBlogs(freshBlogs);
+            setIsAllLoaded(false)
             await AsyncStorage.setItem('blogs', JSON.stringify(freshBlogs));
         }
         setRefreshing(false);
+    };
+
+    const handleScroll = ({ nativeEvent }) => {
+        if (isCloseToBottom(nativeEvent) && !isAllLoaded) {
+            loadMoreBlogs();
+        }
+    };
+
+    const isCloseToBottom = ({ layoutMeasurement, contentOffset, contentSize }) => {
+        const paddingToBottom = 20;
+        return layoutMeasurement.height + contentOffset.y >= contentSize.height - paddingToBottom;
     };
 
     useEffect(() => {
@@ -82,12 +130,10 @@ const Blogs = () => {
             <ScrollView
                 contentContainerStyle={styles.wrapper}
                 refreshControl={<RefreshControl colors={['#e51a4b']} refreshing={refreshing} onRefresh={handleRefresh} />}
+                onScroll={handleScroll}
             >
                 {!loading && !isError && blogs.map((blog, index) => {
                     const { author, featured, location, title, slug, contents } = blog;
-                    function isObject(value) {
-                        return value !== null && typeof value === 'object' && !Array.isArray(value);
-                    }
                     return (
                         <BlogCard
                             key={index}
@@ -114,9 +160,16 @@ const Blogs = () => {
                         <Text style={styles.loaderText}>Something went wrong.</Text>
                     </View>
                 )}
+                {isLoadingMore && !isAllLoaded && !isError && (
+                    <View style={styles.moreLoaderWrapper}>
+                        <ActivityIndicator size={20} color="#e51a4b" />
+                        <Text style={styles.moreLoaderText}>Loading more blogs...</Text>
+                    </View>
+                )}
             </ScrollView>
         </View>
     );
 };
 
 export default Blogs;
+

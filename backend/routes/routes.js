@@ -48,7 +48,8 @@ const {
     getAllGSArticleSlugs,
     getGSBlogCards,
     getAllGSPdfs,
-    getGSPdf
+    getGSPdf,
+    getGSBlogCardsByPages
 } = require('../controllers/fetch.js')
 
 const {
@@ -97,5 +98,6 @@ routes
     .post('/get-all-gs-pdfs', getAllGSPdfs)
     .post('/get-gs-pdf', getGSPdf)
     .post('/send-msg', sendEmail)
+    .post('/get-blog-cards-by-pages', getGSBlogCardsByPages)
 
 module.exports = routes;

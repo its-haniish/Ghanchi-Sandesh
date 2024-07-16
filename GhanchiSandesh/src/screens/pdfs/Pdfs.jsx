@@ -38,19 +38,19 @@ const Pdfs = () => {
         try {
             const cachedPdfs = await AsyncStorage.getItem('pdfs');
             if (cachedPdfs !== null) {
-                setPdfs(JSON.parse(cachedPdfs).reverse());
+                setPdfs(JSON.parse(cachedPdfs));
                 setLoading(false);
                 // Fetch fresh data in background
                 const freshPdfs = await fetchPdfsFromApi();
                 if (freshPdfs) {
-                    setPdfs(freshPdfs.reverse());
+                    setPdfs(freshPdfs);
                     await AsyncStorage.setItem('pdfs', JSON.stringify(freshPdfs));
                 }
             } else {
                 // No cached data, fetch from API and show loader
                 const freshPdfs = await fetchPdfsFromApi();
                 if (freshPdfs) {
-                    setPdfs(freshPdfs.reverse());
+                    setPdfs(freshPdfs);
                     await AsyncStorage.setItem('pdfs', JSON.stringify(freshPdfs));
                 }
             }
@@ -67,7 +67,7 @@ const Pdfs = () => {
         setRefreshing(true);
         const freshPdfs = await fetchPdfsFromApi();
         if (freshPdfs) {
-            setPdfs(freshPdfs.reverse());
+            setPdfs(freshPdfs);
             await AsyncStorage.setItem('pdfs', JSON.stringify(freshPdfs));
         }
         setRefreshing(false);

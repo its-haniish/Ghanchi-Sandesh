@@ -53,7 +53,7 @@ export default styles = StyleSheet.create({
     },
     cardTitle: {
         fontSize: 18,
-        color: 'blue',
+        color: '#e51a4b',
         textDecorationLine: 'underline',
         fontWeight: '600',
         textAlign: 'justify',
@@ -76,6 +76,16 @@ export default styles = StyleSheet.create({
         alignItems: 'flex-start',
         width: '100%',
         gap: 5
-    }
-
+    },
+    moreLoaderWrapper: {
+        height: 50,
+        width: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    moreLoaderText: {
+        color: '#e51a4b',
+        fontSize: 12,
+        fontWeight: '700'
+    },
 })

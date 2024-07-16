@@ -71,7 +71,7 @@ const Article = ({ route }) => {
         >
             {!isError && !loading && (
                 <>
-                    <BlogInfo location={blog?.location || 'India'} date={blog?.createdAt} />
+                    <BlogInfo author={blog?.author || 'India'} date={blog?.createdAt} />
                     <Text style={[styles.cardTitle, { fontSize: 20, paddingHorizontal: 8 }]}>{blog.title}</Text>
                     <BlogImage uri={blog.featured} />
                     {blog?.contents.map((content, index) => {
@@ -105,14 +105,12 @@ const Article = ({ route }) => {
 };
 
 
-const BlogInfo = ({ location, date }) => {
+const BlogInfo = ({ author, date }) => {
     const time = new Date(date).toLocaleDateString();
     return (
         <View style={[styles.cardInfoWrapper, { paddingHorizontal: 8 }]}>
-            <View style={styles.locationWrapper}>
-                <Entypo name='location-pin' size={17} color='#e51a4b' />
-                <Text style={[styles.cardLocation, { fontWeight: 'bold' }]}>{location}</Text>
-            </View>
+            <Text style={styles.cardAuthor}>प्रेषक: <Text style={[styles.cardAuthor, { fontWeight: 'bold' }]}>{author}</Text></Text>
+
             <Text style={styles.cardAuthor}>~ <Text style={[styles.cardAuthor, { fontWeight: 'bold' }]}>{time}</Text></Text>
         </View>
     );

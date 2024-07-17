@@ -66,8 +66,9 @@ export default styles = StyleSheet.create({
         fontSize: 15,
     },
     readMore: {
-        color: '#e51a4b',
-        fontWeight: '500'
+        color: 'gray',
+        fontWeight: '500',
+        fontSize: 13
     },
     cardInfoWrapper: {
         flexDirection: 'row',
@@ -83,12 +84,12 @@ export default styles = StyleSheet.create({
         gap: 4
     },
     cardLocation: {
-        color: '#e51a4b',
+        color: 'black',
         fontWeight: '600',
         fontSize: 15
     },
     cardAuthor: {
-        color: '#e51a4b',
+        color: 'black',
         fontWeight: '600',
         fontSize: 15
     },

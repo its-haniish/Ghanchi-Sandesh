@@ -149,7 +149,7 @@ const Blogs = () => {
                 {loading && (
                     <View style={styles.loaderWrapper}>
                         <ActivityIndicator size={50} color="#e51a4b" />
-                        <Text style={styles.loaderText}>Blogs are loading...</Text>
+                        <Text style={styles.loaderText}>News is Loading...</Text>
                     </View>
                 )}
                 {isError && (
@@ -163,7 +163,7 @@ const Blogs = () => {
                 {isLoadingMore && !isAllLoaded && !isError && (
                     <View style={styles.moreLoaderWrapper}>
                         <ActivityIndicator size={20} color="#e51a4b" />
-                        <Text style={styles.moreLoaderText}>Loading more blogs...</Text>
+                        <Text style={styles.moreLoaderText}>Loading more news...</Text>
                     </View>
                 )}
             </ScrollView>

@@ -60,6 +60,7 @@ export default styles = StyleSheet.create({
         width: '100%'
     },
     cardPara: {
+        marginTop: 2,
         width: '50%',
         textAlign: 'justify',
         color: 'black',
@@ -67,8 +68,9 @@ export default styles = StyleSheet.create({
         height: 95
     },
     readMore: {
-        color: '#e51a4b',
-        fontWeight: '500'
+        color: 'gray',
+        fontWeight: '500',
+        fontSize: 13
     },
     cardInfoWrapper: {
         flexDirection: 'row',

@@ -80,7 +80,7 @@ const Article = ({ route }) => {
                         } else if (content.type === 'Image') {
                             return <BlogImage key={index} uri={content.content} />;
                         } else {
-                            return <Text key={index} style={[styles.cardPara, { fontSize: 20, fontWeight: 'bold', color: '#e51a4b', paddingHorizontal: 8, textAlign: 'left' }]}>{content.content}</Text>;
+                            return <Text key={index} style={[styles.cardPara, { fontSize: 20, fontWeight: 'bold', color: 'black', paddingHorizontal: 8, textAlign: 'left' }]}>{content.content}</Text>;
                         }
                     })}
                 </>

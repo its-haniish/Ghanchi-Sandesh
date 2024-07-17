@@ -17,7 +17,7 @@ const BlogCard = ({ title, para, featured, author, location, slug }) => {
         <TouchableOpacity style={styles.card} onPress={() => handleClick(slug)}>
             <View style={styles.cardInfoWrapper}>
                 <View style={styles.locationWrapper}>
-                    <Icon name='location-dot' size={15} color='#e51a4b' />
+                    <Icon name='location-dot' size={15} color='black' />
                     <Text style={styles.cardLocation}>{location}</Text>
                 </View>
                 <Text style={styles.cardAuthor}>प्रेषक: {author}</Text>

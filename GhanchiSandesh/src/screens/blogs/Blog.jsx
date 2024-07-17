@@ -80,7 +80,7 @@ const Blog = ({ route }) => {
                         } else if (content.type === 'Image') {
                             return <BlogImage key={index} uri={content.content} />;
                         } else {
-                            return <Text key={index} style={[styles.cardPara, { fontSize: 20, fontWeight: 'bold', color: '#e51a4b', paddingHorizontal: 8, textAlign: 'left' }]}>{content.content}</Text>;
+                            return <Text key={index} style={[styles.cardPara, { fontSize: 20, fontWeight: 'bold', color: 'black', paddingHorizontal: 8, textAlign: 'left' }]}>{content.content}</Text>;
                         }
                     })}
                 </>
@@ -89,7 +89,7 @@ const Blog = ({ route }) => {
             {loading && (
                 <View style={styles.loaderWrapper}>
                     <ActivityIndicator size={50} color='#e51a4b' />
-                    <Text style={styles.loaderText}>Blog is loading...</Text>
+                    <Text style={styles.loaderText}>News is Loading...</Text>
                 </View>
             )}
             {isError && (
@@ -97,7 +97,7 @@ const Blog = ({ route }) => {
                     <TouchableOpacity onPress={getPostInfo}>
                         <Entypo name='cycle' size={50} color='#e51a4b' />
                     </TouchableOpacity>
-                    <Text style={styles.loaderText}>Something went wrong. Please try again.</Text>
+                    <Text style={styles.loaderText}>Something went wrong.</Text>
                 </View>
             )}
         </ScrollView>
@@ -108,7 +108,7 @@ const BlogInfo = ({ location, author }) => {
     return (
         <View style={[styles.cardInfoWrapper, { paddingHorizontal: 8 }]}>
             <View style={styles.locationWrapper}>
-                <Entypo name='location-pin' size={17} color='#e51a4b' />
+                <Entypo name='location-pin' size={15} color='black' />
                 <Text style={[styles.cardLocation, { fontWeight: 'bold' }]}>{location}</Text>
             </View>
             <Text style={styles.cardAuthor}>प्रेषक: <Text style={[styles.cardAuthor, { fontWeight: 'bold' }]}>{author}</Text></Text>

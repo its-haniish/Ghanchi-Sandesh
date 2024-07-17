@@ -34,19 +34,19 @@ const Videos = () => {
         try {
             const cachedVideos = await AsyncStorage.getItem('videos');
             if (cachedVideos !== null) {
-                setVideos(JSON.parse(cachedVideos).reverse());
+                setVideos(JSON.parse(cachedVideos));
                 setLoading(false);
                 // Fetch fresh data in background
                 const freshVideos = await fetchVideosFromApi();
                 if (freshVideos) {
-                    setVideos(freshVideos.reverse());
+                    setVideos(freshVideos);
                     await AsyncStorage.setItem('videos', JSON.stringify(freshVideos));
                 }
             } else {
                 // No cached data, fetch from API and show loader
                 const freshVideos = await fetchVideosFromApi();
                 if (freshVideos) {
-                    setVideos(freshVideos.reverse());
+                    setVideos(freshVideos);
                     await AsyncStorage.setItem('videos', JSON.stringify(freshVideos));
                 }
             }

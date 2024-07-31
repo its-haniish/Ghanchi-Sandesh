@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar.jsx';
 import { RotatingLines } from 'react-loader-spinner';
 import { useParams, useNavigate } from 'react-router-dom';
 import AddContent from '../components/AddContent.jsx';
+import compressImage from '../actions/compressImage.js';
 
 const EditPost = () => {
     const { slug } = useParams();
@@ -16,7 +17,7 @@ const EditPost = () => {
     });
     const navigate = useNavigate();
 
-    const readFileAsUrl = (file) => {
+    const readFileAsUrl = async (file) => {
         return new Promise((resolve, reject) => {
             const reader = new FileReader();
             reader.onloadend = () => resolve(reader.result);
@@ -70,6 +71,38 @@ const EditPost = () => {
         } catch (error) {
             console.error("Error updating post:", error);
             setLoading(false);
+        }
+    };
+
+    const compressAllImages = async () => {
+        setLoading(true);
+        try {
+            // Compress featured image
+            if (formData.featured) {
+                const featuredFile = await fetch(formData.featured).then(r => r.blob());
+                const compressedFeatured = await compressImage(featuredFile);
+                const compressedFeaturedUrl = await readFileAsUrl(compressedFeatured);
+                setFormData(prev => ({ ...prev, featured: compressedFeaturedUrl }));
+            }
+
+            // Compress images in contents
+            const newContents = await Promise.all(contents.map(async (item) => {
+                if (item.type === 'Image') {
+                    const imageFile = await fetch(item.content).then(r => r.blob());
+                    const compressedImage = await compressImage(imageFile);
+                    const compressedImageUrl = await readFileAsUrl(compressedImage);
+                    return { ...item, content: compressedImageUrl };
+                }
+                return item;
+            }));
+
+            setContents(newContents);
+            setLoading(false);
+            alert('All images have been compressed!');
+        } catch (error) {
+            console.error("Error compressing images:", error);
+            setLoading(false);
+            alert('Error compressing images. Please try again.');
         }
     };
 
@@ -162,7 +195,14 @@ const EditPost = () => {
                     </div>
                     <AddContent contents={contents} setContents={setContents} readFileAsUrl={readFileAsUrl} />
                 </div>
-
+                <button 
+                    type='button' 
+                    onClick={compressAllImages} 
+                    className="mt-1 bg-blue-500 text-white text-lg py-1 px-4 rounded active:bg-blue-600 w-auto h-10 flex justify-center items-center font-bold"
+                    disabled={loading}
+                >
+                    Compress Images
+                </button>
                 <button type='submit' className="mt-1 bg-[#e51a4b] text-white text-lg py-1 px-4 rounded active:bg-slate-600 w-28 h-10 flex justify-center items-center font-bold mb-6">
                     {!loading ? 'UPDATE' : <RotatingLines height="30" width="30" strokeColor="white" />}
                 </button>

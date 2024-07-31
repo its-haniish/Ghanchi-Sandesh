@@ -4,7 +4,8 @@ const Videos = require("../models/Videos.js")
 const GSBlogs = require('../models/gs/GSBlogs.js')
 const GSArticles = require('../models/gs/GSArticle.js')
 const GSVideos = require('../models/gs/GSVideos.js');
-const GSPdfs = require('../models/gs/GSPdfs.js')
+const GSPdfs = require('../models/gs/GSPdfs.js');
+const compressImage = require("../utils/compressImage.js");
 
 const createBlog = async (req, res) => {
     try {
@@ -22,10 +23,14 @@ const createBlog = async (req, res) => {
     }
 }
 
+
+
+// This is where i need to compress the image before saving it to database.
 const createGSBlog = async (req, res) => {
     try {
         console.log('creating gs post...');
-        const response = await GSBlogs.create({ ...req.body })
+        const featured  = await compressImage(req.body.featured);
+        const response = await GSBlogs.create({ ...req.body, featured: featured })
         if (response) {
             console.log("Created post : ", response.slug);
             res.status(200).json({ msg: "Post created successfully.", post: response.slug });

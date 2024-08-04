@@ -10,23 +10,21 @@ const Pdfs = () => {
     const getAllPdfs = async () => {
         setLoading(true);
         try {
-            const response = await fetch(`${process.env.REACT_APP_BASE_URL}/get-all-gs-pdfs`, {
+            const response = await fetch(`${process.env.REACT_APP_BASE_URL}/get-all-gs-pdfs-title`, {
                 method: 'POST',
                 headers: { "Content-Type": "application/json" }
             });
 
             let result = await response.json();
-            result = result.response;
-            console.log("Fetched pdfs:", result);
 
             if (response.status === 200) {
                 setPdfs(result.reverse());
             } else {
-                alert(result.msg || "Error fetching posts");
+                alert(result.msg || "Error fetching pdfs");
             }
         } catch (error) {
-            console.error("Error fetching posts:", error);
-            alert("An error occurred while fetching posts. Please try again later.");
+            console.error("Error fetching pdfs:", error);
+            alert("An error occurred while fetching pdfs. Please try again later.");
         } finally {
             setLoading(false);
         }

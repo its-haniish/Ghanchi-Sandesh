@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar.jsx';
 import { RotatingLines } from 'react-loader-spinner';
 import { useNavigate } from 'react-router-dom';
 import AddContent from '../components/AddContent.jsx';
+import compressImage from '../actions/compressImage.js';
 
 const AddPost = () => {
     const [loading, setLoading] = useState(false);
@@ -11,18 +12,20 @@ const AddPost = () => {
         title: '',
         featured: '',
         author: '',
-        slug: ''
+        slug: '',
+        location: ''
     });
     const navigate = useNavigate();
 
-    const readFileAsUrl = (file) => {
+    const readFileAsUrl = async (file) => {
+        const compressedFile = await compressImage(file);
         return new Promise((resolve, reject) => {
             const reader = new FileReader();
             reader.onloadend = () => {
                 resolve(reader.result);
             };
             reader.onerror = reject;
-            reader.readAsDataURL(file);
+            reader.readAsDataURL(compressedFile);
         });
     };
 
@@ -85,6 +88,18 @@ const AddPost = () => {
                         required
                     />
                 </div>
+                <div className="flex flex-col justify-start items-center w-full mt-2 h-fit">
+                    <label className="font-semibold">Location</label>
+                    <input
+                        type="text"
+                        placeholder="Enter Location here..."
+                        className="bg-gray-100 w-[80%] text-center h-fit px-2 py-1 text-lg mt-1 rounded-md"
+                        name="location"
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+
                 <div className="flex flex-col justify-start items-center w-full mt-2 h-fit">
                     <label className="font-semibold">FEATURED IMAGE:</label>
                     <div className="w-full flex justify-center items-center">

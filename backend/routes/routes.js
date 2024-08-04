@@ -49,7 +49,8 @@ const {
     getGSBlogCards,
     getAllGSPdfs,
     getGSPdf,
-    getGSBlogCardsByPages
+    getGSBlogCardsByPages,
+    getAllGSPdfsTitle
 } = require('../controllers/fetch.js')
 
 const {
@@ -91,6 +92,7 @@ routes
     .post('/get-all-post-slugs', getAllPostSlugs)
     .post('/get-all-gs-post-slugs', getAllGSPostSlugs)
     .post('/get-all-gs-article-slugs', getAllGSArticleSlugs)
+    .post('/get-all-gs-pdfs-title', getAllGSPdfsTitle)
     .post('/get-gs-blog-cards', getGSBlogCards)
     .post('/create-gs-pdf', createGSPdf)
     .post('/update-gs-pdf', updateGSPdf)
@@ -99,5 +101,8 @@ routes
     .post('/get-gs-pdf', getGSPdf)
     .post('/send-msg', sendEmail)
     .post('/get-blog-cards-by-pages', getGSBlogCardsByPages)
+    .get('/', (req, res) => {
+        res.send('Welcome to the backend server of the website');
+    })
 
 module.exports = routes;

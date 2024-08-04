@@ -73,6 +73,18 @@ const getAllGSPdfs = async (req, res) => {
     }
 }
 
+const getAllGSPdfsTitle = async (req, res) => {
+    console.log("Fetching all pdfs Slugs");
+    try {
+        let response = await GSPdfs.find({}).select('title');
+        let reversedRes = response.reverse();
+
+        res.status(200).json(reversedRes);
+    } catch (error) {
+        res.status(500).json({ msg: "Internal Server Error" });
+    }
+}
+
 const getAllPostSlugs = async (req, res) => {
     try {
         let response = await Blogs.find({}).select('slug');
@@ -344,4 +356,4 @@ const getAllGSVideos = async (req, res) => {
     }
 }
 
-module.exports = { getBlog, getBlogsByPage, getAllPosts, getArticle, getAllArticles, getAllVideos, getVideo, getAllPostSlugs, getAllGSPosts, getGSBlog, getGSArticle, getAllGSArticles, getGSVideo, getAllGSVideos, getAllGSPostSlugs, getAllGSArticleSlugs, getGSBlogCards, getAllGSPdfs, getGSPdf, getGSBlogCardsByPages };
+module.exports = { getBlog, getBlogsByPage, getAllPosts, getArticle, getAllArticles, getAllVideos, getVideo, getAllPostSlugs, getAllGSPosts, getGSBlog, getGSArticle, getAllGSArticles, getGSVideo, getAllGSVideos, getAllGSPostSlugs, getAllGSArticleSlugs, getGSBlogCards, getAllGSPdfs, getGSPdf, getAllGSPdfsTitle, getGSBlogCardsByPages };

@@ -15,6 +15,7 @@
     "@react-navigation/drawer": "^6.7.1",
     "@react-navigation/native": "^6.1.17",
     "@react-navigation/stack": "^6.3.29",
+    "GhanchiSandesh": "file:",
     "react": "18.2.0",
     "react-native": "0.74.2",
     "react-native-gesture-handler": "^2.17.1",

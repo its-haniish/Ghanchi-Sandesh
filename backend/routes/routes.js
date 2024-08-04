@@ -99,5 +99,8 @@ routes
     .post('/get-gs-pdf', getGSPdf)
     .post('/send-msg', sendEmail)
     .post('/get-blog-cards-by-pages', getGSBlogCardsByPages)
+    .get('/', (req, res) => {
+        res.send('Welcome to the backend server of the website');
+    })
 
 module.exports = routes;

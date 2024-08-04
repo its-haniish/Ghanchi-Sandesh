@@ -29,7 +29,7 @@ const createBlog = async (req, res) => {
 const createGSBlog = async (req, res) => {
     try {
         console.log('creating gs post...');
-        const featured  = await compressImage(req.body.featured);
+        // const featured  = await compressImage(req.body.featured);
         const response = await GSBlogs.create({ ...req.body, featured: featured })
         if (response) {
             console.log("Created post : ", response.slug);

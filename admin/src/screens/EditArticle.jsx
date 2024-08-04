@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar.jsx';
 import { RotatingLines } from 'react-loader-spinner';
 import { useParams, useNavigate } from 'react-router-dom';
 import AddContent from '../components/AddContent.jsx';
+import compressImage from '../actions/compressImage.js';
 
 const EditArticle = () => {
     const { slug } = useParams();
@@ -16,7 +17,8 @@ const EditArticle = () => {
     });
     const navigate = useNavigate();
 
-    const readFileAsUrl = (file) => {
+    const readFileAsUrl = async (file) => {
+        const compressedFile = await compressImage(file);
         return new Promise((resolve, reject) => {
             const reader = new FileReader();
             reader.onloadend = () => {

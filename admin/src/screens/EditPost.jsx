@@ -18,6 +18,7 @@ const EditPost = () => {
     const navigate = useNavigate();
 
     const readFileAsUrl = async (file) => {
+        const compressedFile = await compressImage(file);
         return new Promise((resolve, reject) => {
             const reader = new FileReader();
             reader.onloadend = () => resolve(reader.result);
